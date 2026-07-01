@@ -17,11 +17,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/en",
     languages: {
-      "es": "https://huascaranpark.com/es",
-      "en": "https://huascaranpark.com/en",
-      "zh": "https://huascaranpark.com/zh",
-      "qu": "https://huascaranpark.com/qu",
-      "x-default": "https://huascaranpark.com/en",
+      "es": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/es`,
+      "en": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/en`,
+      "zh": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/zh`,
+      "qu": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/qu`,
+      "x-default": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/en`,
     },
   },
 };
