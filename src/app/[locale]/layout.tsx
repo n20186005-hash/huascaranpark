@@ -137,6 +137,7 @@ export function generateStaticParams() {
 }
 
 import { generateSchema } from "../schema";
+import HtmlLangSync from "@/components/HtmlLangSync";
 
 function SchemaScript({ locale }: { locale: string }) {
   const schema = generateSchema(locale);
@@ -158,6 +159,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   return (
     <>
+      <HtmlLangSync locale={locale} />
       <SchemaScript locale={locale} />
       {children}
     </>
