@@ -1,7 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const outDir = path.resolve(__dirname, '..', 'out');
+// 静态导出（output: 'export'）产物在 out/，standalone/OpenNext 产物在 .next/server/app/
+const candidateDirs = [
+  path.resolve(__dirname, '..', 'out'),
+  path.resolve(__dirname, '..', '.next', 'server', 'app'),
+];
 
 // Map of locale to HTML lang attribute value
 const langMap = {
@@ -23,7 +27,7 @@ function walkDir(dir, callback) {
   }
 }
 
-function fixHtmlLang(filePath) {
+function fixHtmlLang(filePath, baseDir) {
   let content = fs.readFileSync(filePath, 'utf-8');
   
   // Determine locale from file path
@@ -56,10 +60,19 @@ function fixHtmlLang(filePath) {
     
     content = content.replace(htmlTagRegex, htmlTag);
     fs.writeFileSync(filePath, content, 'utf-8');
-    console.log(`✓ Fixed lang="${lang}" in ${path.relative(outDir, filePath)}`);
+    console.log(`✓ Fixed lang="${lang}" in ${path.relative(baseDir, filePath)}`);
   }
 }
 
 console.log('Fixing HTML lang attributes...');
-walkDir(outDir, fixHtmlLang);
-console.log('Done!');
+let patched = 0;
+for (const dir of candidateDirs) {
+  if (!fs.existsSync(dir)) continue;
+  const baseDir = dir;
+  walkDir(dir, (filePath) => {
+    // 让日志里的相对路径基于当前处理的目录
+    fixHtmlLang(filePath, baseDir);
+    patched += 1;
+  });
+}
+console.log(`Done! (${patched} files)`);
