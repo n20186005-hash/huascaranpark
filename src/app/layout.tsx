@@ -13,17 +13,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}`),
-  alternates: {
-    canonical: "/en",
-    languages: {
-      "es": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/es`,
-      "en": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/en`,
-      "zh": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/zh`,
-      "qu": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/qu`,
-      "x-default": `https://${process.env.CURRENT_SITE_DOMAIN || 'huascaranpark.com'}/en`,
-    },
-  },
+  metadataBase: new URL(`https://${process.env.CURRENT_SITE_DOMAIN || 'www.huascaranpark.com'}`),
 };
 
 export default function RootLayout({

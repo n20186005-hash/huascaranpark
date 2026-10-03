@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { LangProvider, useLang } from "@/components/LangProvider";
+import type { Locale } from "@/i18n/translations";
 import { useTheme } from "next-themes";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import galleryImagesData from "@/gallery-data.json";
@@ -139,7 +140,7 @@ function Hero() {
         <div className="hero-meta">
           <div className="hero-rating">4.7</div>
           <div className="hero-stars">★ ★ ★ ★ ★</div>
-          <div className="hero-reviews">5,506 {t.rating.reviews} · {t.rating.source}</div>
+          <div className="hero-reviews">5,511 {t.rating.reviews} · {t.rating.source}</div>
         </div>
       </a>
     </section>
@@ -670,13 +671,62 @@ function Footer() {
   );
 }
 
-export default function Home(props: { params: Promise<{ locale: string }> }) {
-  const params = React.use(props.params);
+function QuickNav() {
+  const { t } = useLang();
+  const items: { label: string; href: string }[] = [
+    { label: t.visiting.price.title, href: "/entrance-fees/" },
+    { label: t.visiting.hours.title, href: "#visiting" },
+    { label: t.tips.title, href: "#tips" },
+    { label: t.transportation.title, href: "#transportation" },
+    { label: t.visiting.route.title, href: "#visiting" },
+  ];
   return (
-    <LangProvider initialLocale={params.locale as "en" | "zh" | "es" | "qu"}>
+    <div className="quick-nav">
+      {items.map((it, i) => (
+        <a key={i} href={it.href} className="quick-nav-item">{it.label}</a>
+      ))}
+    </div>
+  );
+}
+
+function Glance() {
+  const { t } = useLang();
+  return (
+    <section id="glance" className="section">
+      <ScrollReveal>
+        <p className="section-label">★</p>
+        <h2 className="section-title">{t.glance.title}</h2>
+        <div className="section-divider" />
+        <p className="about-text" style={{ whiteSpace: "pre-line" }}>{t.glance.caption}</p>
+      </ScrollReveal>
+      <ScrollReveal>
+        <div className="glance-grid">
+          {t.glance.items.map((it, i) => (
+            <div className="glance-card" key={i}>
+              <div className="glance-value">{it.value}</div>
+              <div className="glance-label">{it.label}</div>
+            </div>
+          ))}
+        </div>
+      </ScrollReveal>
+      <ScrollReveal>
+        <div className="glance-source">
+          <a href={t.glance.sourceUrl} target="_blank" rel="noopener noreferrer">{t.glance.source}</a>
+          <span> · {t.glance.verified}</span>
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+export function HomeContent() {
+  return (
+    <>
       <Nav />
       <Hero />
+      <QuickNav />
       <About />
+      <Glance />
       <History />
       <Ecology />
       <Culture />
@@ -688,6 +738,15 @@ export default function Home(props: { params: Promise<{ locale: string }> }) {
       <FAQ />
       <Location />
       <Footer />
+    </>
+  );
+}
+
+export default function Home(props: { params: Promise<{ locale: string }> }) {
+  const params = React.use(props.params);
+  return (
+    <LangProvider initialLocale={params.locale as Locale}>
+      <HomeContent />
     </LangProvider>
   );
 }

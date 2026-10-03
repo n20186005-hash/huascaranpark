@@ -17,29 +17,63 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "huascaranpark.com"}`;
+const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "www.huascaranpark.com"}`;
+
+const TITLES: Record<string, string> = {
+  es: "Parque Nacional Huascarán: Entradas, Rutas y Guía 2026",
+  zh: "瓦斯卡兰国家公园：门票、路线与旅行指南 2026",
+  qu: "Huascarán Nasyunal Pak: Puriy Guía 2026",
+};
+
+const DESCRIPTIONS: Record<string, string> = {
+  es: "Planifica tu visita al Parque Nacional Huascarán en Perú. Entradas, horarios, Laguna 69, Santa Cruz Trek, mapas y consejos desde Huaraz.",
+  zh: "规划你的秘鲁瓦斯卡兰国家公园之旅。门票、开放时间、Laguna 69、Santa Cruz 徒步、地图与来自 Huaraz 的实用建议。",
+  qu: "Huascarán Nasyunal Pak Perú puriy. Qullqi, punchaw, Laguna 69, Santa Cruz, mapa, yachay.",
+};
+
+const OG_LOCALE: Record<string, string> = {
+  es: "es_PE",
+  zh: "zh_CN",
+  qu: "qu_PE",
+};
+
+const ALT_LOCALE: Record<string, string[]> = {
+  es: ["en_US", "zh_CN", "qu_PE"],
+  zh: ["es_PE", "en_US", "qu_PE"],
+  qu: ["es_PE", "en_US", "zh_CN"],
+};
+
+const SITE_NAME: Record<string, string> = {
+  es: "Parque Nacional Huascarán Guía de Viaje",
+  zh: "瓦斯卡兰国家公园旅行指南",
+  qu: "Huascarán Nasyunal Pak rikuy",
+};
+
+const OG_IMAGE_ALT: Record<string, string> = {
+  es: "Parque Nacional Huascarán - Ancash, Perú",
+  zh: "瓦斯卡兰国家公园 - 秘鲁安卡什大区",
+  qu: "Huascarán Nasyunal Pak - Ancash, Piruw",
+};
 
 export async function generateMetadata(
   { params }: { params: Promise<{ locale: string }> }
 ): Promise<Metadata> {
   const { locale } = await params;
+  const title = TITLES[locale] || TITLES.es;
+  const description = DESCRIPTIONS[locale] || DESCRIPTIONS.es;
+  const ogLocale = OG_LOCALE[locale] || "es_PE";
+  const altLocale = ALT_LOCALE[locale] || ["en_US", "zh_CN", "qu_PE"];
+  const siteName = SITE_NAME[locale] || SITE_NAME.es;
+  const ogAlt = OG_IMAGE_ALT[locale] || OG_IMAGE_ALT.es;
   return {
     metadataBase: new URL(baseUrl),
     title: {
-      default: locale === "es" ? "Parque Nacional Huascarán — Ancash, Perú"
-        : locale === "zh" ? "瓦斯卡兰国家公园 — 秘鲁安卡什大区"
-        : locale === "qu" ? "Huascarán Nasyunal Pak — Ancash, Piruw"
-        : "Huascarán National Park — Ancash, Peru",
+      default: title,
       template: locale === "es" ? "%s | Parque Nacional Huascarán"
         : locale === "zh" ? "%s | 瓦斯卡兰国家公园"
-        : locale === "qu" ? "%s | Huascarán Nasyunal Pak"
-        : "%s | Huascarán National Park",
+        : "%s | Huascarán Nasyunal Pak",
     },
-    description:
-      locale === 'es' ? "Guía de viaje al Parque Nacional Huascarán en Ancash, Perú. Descubre este hermoso parque nacional y Patrimonio Mundial de la UNESCO en la Cordillera Blanca." :
-      locale === 'zh' ? "瓦斯卡兰国家公园旅行指南——探索秘鲁安卡什大区联合国教科文组织世界遗产布兰卡山脉。" :
-      locale === 'qu' ? "Huascarán Nasyunal Pak rikuy, Ancash, Piruw. Pachamama wiñay kawsay." :
-      "A travel guide to Huascarán National Park in Ancash, Peru. Discover this UNESCO World Heritage Site in the Cordillera Blanca mountain range.",
+    description,
     keywords: [
       "Huascarán National Park",
       "Parque Nacional Huascarán",
@@ -47,11 +81,11 @@ export async function generateMetadata(
       "Peru national park",
       "Cordillera Blanca",
       "UNESCO World Heritage Site Peru",
-      "Huascarán summit",
+      "Huascarán entrance fee",
+      "Laguna 69",
+      "Santa Cruz Trek",
+      "Huaraz",
       "trekking Peru",
-      "mountaineering Peru",
-      "Ancash attractions",
-      "Peru trekking",
     ],
     authors: [{ name: "Huascarán National Park Travel Guide" }],
     creator: "Huascarán National Park Travel Guide",
@@ -63,44 +97,25 @@ export async function generateMetadata(
     },
     openGraph: {
       type: "website",
-      locale: locale === "es" ? "es_PE" : locale === "zh" ? "zh_CN" : locale === "qu" ? "qu_PE" : "en_US",
-      alternateLocale: (locale === "es" ? ["en_US", "zh_CN", "qu_PE"] : locale === "en" ? ["es_PE", "zh_CN", "qu_PE"] : locale === "zh" ? ["es_PE", "en_US", "qu_PE"] : ["es_PE", "en_US", "zh_CN"]),
+      locale: ogLocale,
+      alternateLocale: altLocale,
       url: `${baseUrl}/${locale}`,
-      title: locale === "es" ? "Parque Nacional Huascarán — Ancash, Perú"
-        : locale === "zh" ? "瓦斯卡兰国家公园 — 秘鲁安卡什大区"
-        : locale === "qu" ? "Huascarán Nasyunal Pak — Ancash, Piruw"
-        : "Huascarán National Park — Ancash, Peru",
-      description: locale === 'es' ? "Guía de viaje al Parque Nacional Huascarán en Ancash, Perú. Descubre este hermoso parque nacional y Patrimonio Mundial de la UNESCO en la Cordillera Blanca." :
-        (locale === 'zh' ? "瓦斯卡兰国家公园旅行指南——探索秘鲁安卡什大区联合国教科文组织世界遗产布兰卡山脉。" :
-        (locale === 'qu' ? "Huascarán Nasyunal Pak rikuy, Ancash, Piruw. Pachamama wiñay kawsay." :
-        "A travel guide to Huascarán National Park in Ancash, Peru. Discover this UNESCO World Heritage Site in the Cordillera Blanca mountain range.")),
-      siteName: locale === "es" ? "Parque Nacional Huascarán Guía de Viaje"
-        : locale === "zh" ? "瓦斯卡兰国家公园旅行指南"
-        : locale === "qu" ? "Huascarán Nasyunal Pak rikuy"
-        : "Huascarán National Park Travel Guide",
+      title,
+      description,
+      siteName,
       images: [
         {
           url: "/gallery/huascaran-national-park (1).jpg",
           width: 1200,
           height: 630,
-          alt: locale === "es" ? "Parque Nacional Huascarán - Ancash, Perú"
-            : locale === "zh" ? "瓦斯卡兰国家公园 - 秘鲁安卡什大区"
-            : locale === "qu" ? "Huascarán Nasyunal Pak - Ancash, Piruw"
-            : "Huascarán National Park - Ancash, Peru",
+          alt: ogAlt,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: locale === "es" ? "Parque Nacional Huascarán — Ancash, Perú"
-        : locale === "zh" ? "瓦斯卡兰国家公园 — 秘鲁安卡什大区"
-        : locale === "qu" ? "Huascarán Nasyunal Pak — Ancash, Piruw"
-        : "Huascarán National Park — Ancash, Peru",
-      description:
-        locale === 'es' ? "Guía de viaje al Parque Nacional Huascarán en Ancash, Perú." :
-        locale === 'zh' ? "瓦斯卡兰国家公园旅行指南——探索秘鲁安卡什大区布兰卡山脉。" :
-        locale === 'qu' ? "Huascarán Nasyunal Pak rikuy, Ancash, Piruw." :
-        "A travel guide to Huascarán National Park in Ancash, Peru.",
+      title,
+      description,
       images: ["/gallery/huascaran-national-park (1).jpg"],
     },
     robots: {
@@ -117,11 +132,11 @@ export async function generateMetadata(
     alternates: {
       canonical: `/${locale}`,
       languages: {
+        "en": "/",
         "es": "/es",
-        "en": "/en",
         "zh": "/zh",
         "qu": "/qu",
-        "x-default": "/en",
+        "x-default": "/",
       },
     },
   };
@@ -133,21 +148,11 @@ export const viewport: Viewport = {
 };
 
 export function generateStaticParams() {
-  return [{ locale: "es" }, { locale: "en" }, { locale: "zh" }, { locale: "qu" }];
+  return [{ locale: "es" }, { locale: "zh" }, { locale: "qu" }];
 }
 
-import { generateSchema } from "../schema";
+import SchemaScript from "@/components/SchemaScript";
 import HtmlLangSync from "@/components/HtmlLangSync";
-
-function SchemaScript({ locale }: { locale: string }) {
-  const schema = generateSchema(locale);
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
 
 export default async function LocaleLayout({
   children,

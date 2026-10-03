@@ -15,7 +15,7 @@ export function generateSchema(locale: string) {
           : locale === "qu"
           ? "Huascarán Nasyunal Pak nisqa UNESCO Pachamama wiñay kawsay, Piruw Blanca urqukunapi. Rit'i urqukuna, rit'i mayukuna, quchakuna, Andino kawsay."
           : "瓦斯卡兰国家公园是位于秘鲁布兰卡山脉的联合国教科文组织世界遗产。拥有高耸的雪峰、冰川、高原湖泊和独特的安第斯生物多样性。",
-        "url": `${baseUrl}/${locale}`,
+        "url": locale === "en" ? `${baseUrl}/` : `${baseUrl}/${locale}`,
         "touristType": ["NationalPark", "WorldHeritageSite", "Mountain", "Glacier", "Trekking", "Wildlife"],
         "geo": {
           "@type": "GeoCoordinates",
@@ -33,7 +33,7 @@ export function generateSchema(locale: string) {
             "@type": "PropertyValue",
             "name": "rating",
             "value": "4.7/5",
-            "description": "Rated 4.7 out of 5 with 5,506 Google reviews"
+            "description": "Rated 4.7 out of 5 with 5,511 Google reviews"
           },
           {
             "@type": "PropertyValue",
@@ -68,13 +68,13 @@ export function generateSchema(locale: string) {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": `${baseUrl}/${locale}`
+            "item": locale === "en" ? `${baseUrl}/` : `${baseUrl}/${locale}`
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": locale === "en" ? "Ancash Attractions" : locale === "es" ? "Atractivos de Ancash" : locale === "qu" ? "Ancash atractivokuna" : "安卡什大区景点",
-            "item": `${baseUrl}/${locale}`
+            "item": locale === "en" ? `${baseUrl}/` : `${baseUrl}/${locale}`
           }
         ]
       }
