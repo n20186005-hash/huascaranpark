@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import EntranceFeesContent, { entranceFaqEs } from "@/components/EntranceFeesContent";
+import EntranceFeesContent from "@/components/EntranceFeesContent";
+import { entranceFaqEs } from "@/i18n/entrance-faq";
 import { LangProvider } from "@/components/LangProvider";
 import HtmlLangSync from "@/components/HtmlLangSync";
 
