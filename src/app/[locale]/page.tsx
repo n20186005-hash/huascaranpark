@@ -5,21 +5,14 @@ import Link from "next/link";
 import { LangProvider, useLang } from "@/components/LangProvider";
 import type { Locale } from "@/i18n/translations";
 import { useTheme } from "next-themes";
+import { interfaceCopy, homePath } from "@/i18n/interface";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { regionalAttractions } from "@/i18n/regional-attractions";
 import { nearby, nearbyPath } from "@/i18n/nearby";
+import { googleReviews } from "@/i18n/reviews";
 import galleryImagesData from "@/gallery-data.json";
 
 const MAPS_URL = "https://maps.app.goo.gl/rSbVEjRWfoWmCdiS9";
-
-const GOOGLE_REVIEWS = [
-  { name: "María G.", avatar: "MG", rating: 5, date: "2024-11-20", text: "Un lugar simplemente espectacular. Las montañas son imponentes y los paisajes de otro mundo. Hice el trek Santa Cruz y fue una experiencia inolvidable. Lo recomiendo mucho." },
-  { name: "John S.", avatar: "JS", rating: 5, date: "2024-10-15", text: "Huascarán National Park is absolutely breathtaking! The Cordillera Blanca is the most beautiful mountain range I've ever seen. The Llanganuco lakes are a must-visit. Will definitely come back for the Huayhuash trek!" },
-  { name: "Carlos R.", avatar: "CR", rating: 5, date: "2024-09-10", text: "Un paraíso para los amantes del trekking y la naturaleza. El Parque Nacional Huascarán es Patrimonio Mundial por algo. Las lagunas, los nevados, la flora y fauna... todo es increíble." },
-  { name: "李小美", avatar: "李", rating: 5, date: "2024-08-25", text: "瓦斯卡兰国家公园真的很美！布兰卡山脉的雪峰令人震撼，高原湖泊的颜色像绿松石一样美丽。我们走了一日游路线，虽然有点高原反应，但非常值得。" },
-  { name: "Ana P.", avatar: "AP", rating: 5, date: "2024-07-18", text: "Hermoso parque, muy bien cuidado. La biodiversidad es impresionante, vi cóndores andinos y vicuñas. La cultura quechua de las comunidades locales es muy interesante. Una experiencia completa." },
-  { name: "Michael T.", avatar: "MT", rating: 4, date: "2024-06-05", text: "Amazing national park! The mountains are spectacular. Did the Santa Cruz trek - challenging but worth it. The views of Alpamayo and other 6000m peaks are unforgettable. Highly recommend hiring a local guide." },
-];
 
 function ScrollReveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,6 +30,7 @@ function ScrollReveal({ children, className = "" }: { children: React.ReactNode;
 }
 
 function ThemeToggle() {
+  const { locale } = useLang();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -51,7 +45,7 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="theme-toggle-btn"
-      aria-label="Toggle theme"
+      aria-label={interfaceCopy[locale].theme}
       style={{
         background: "none",
         border: "none",
@@ -96,7 +90,7 @@ function Nav() {
     <nav className={`site-nav ${scrolled ? "scrolled" : ""}`}>
       <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
         <span style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", fontWeight: 700, color: "#fff" }}>
-          Huascarán National Park
+          {interfaceCopy[locale].park}
         </span>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
@@ -459,7 +453,8 @@ function Tips() {
 }
 
 function Gallery() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
+  const labels = interfaceCopy[locale];
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const galleryImages = galleryImagesData;
 
@@ -486,7 +481,7 @@ function Gallery() {
         <div className="gallery-grid">
           {galleryImages.map((src, i) => (
             <div className="gallery-item" key={i} onClick={() => setLightboxIndex(i)}>
-              <img src={src} alt={`Huascarán National Park ${i + 1}`} loading="lazy" />
+              <img src={src} alt={`${labels.park} ${i + 1}`} loading="lazy" />
             </div>
           ))}
         </div>
@@ -503,10 +498,10 @@ function Gallery() {
       </ScrollReveal>
       {lightboxIndex !== null && galleryImages.length > 0 && (
         <div className="lightbox" onClick={() => setLightboxIndex(null)}>
-          <button className="lightbox-close" onClick={() => setLightboxIndex(null)}>×</button>
-          <button className="lightbox-prev" onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length); }}>‹</button>
-          <img src={galleryImages[lightboxIndex]} alt={`Huascarán National Park ${lightboxIndex + 1}`} className="lightbox-img" />
-          <button className="lightbox-next" onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % galleryImages.length); }}>›</button>
+          <button className="lightbox-close" aria-label={labels.close} onClick={() => setLightboxIndex(null)}>×</button>
+          <button className="lightbox-prev" aria-label={labels.previous} onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length); }}>‹</button>
+          <img src={galleryImages[lightboxIndex]} alt={`${labels.park} ${lightboxIndex + 1}`} className="lightbox-img" />
+          <button className="lightbox-next" aria-label={labels.next} onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % galleryImages.length); }}>›</button>
         </div>
       )}
     </section>
@@ -514,7 +509,8 @@ function Gallery() {
 }
 
 function Reviews() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
+  const reviews = googleReviews.filter((review) => review.locale === locale);
 
   return (
     <section id="reviews" className="section">
@@ -526,7 +522,7 @@ function Reviews() {
       </ScrollReveal>
       <ScrollReveal>
         <div className="reviews-grid">
-          {GOOGLE_REVIEWS.map((review, i) => (
+          {reviews.map((review, i) => (
             <div className="review-card" key={i}>
               <div className="review-header">
                 <div className="review-avatar">{review.avatar}</div>
@@ -616,7 +612,7 @@ function FAQ() {
 }
 
 function Location() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
   return (
     <section id="location" className="section">
       <ScrollReveal>
@@ -635,7 +631,7 @@ function Location() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Huascarán National Park Location Map"
+              title={interfaceCopy[locale].map}
             />
           </div>
           <div className="location-info">
@@ -654,7 +650,7 @@ function Location() {
 }
 
 function Footer() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
   return (
     <footer className="site-footer">
       <div className="footer-links">
@@ -668,14 +664,14 @@ function Footer() {
         </div>
       </div>
       <div className="footer-legal" style={{ maxWidth: "1100px", margin: "0 auto", padding: "1rem 2rem 0", textAlign: "center" }}>
-        <Link href="/privacy" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "0.8rem", marginRight: "1.5rem" }}>
-          Privacy Policy
+        <Link href={locale === "en" ? "/privacy" : `${homePath(locale)}/privacy`} style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "0.8rem", marginRight: "1.5rem" }}>
+          {interfaceCopy[locale].privacy}
         </Link>
-        <Link href="/terms" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "0.8rem", marginRight: "1.5rem" }}>
-          Terms of Service
+        <Link href={locale === "en" ? "/terms" : `${homePath(locale)}/terms`} style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "0.8rem", marginRight: "1.5rem" }}>
+          {interfaceCopy[locale].terms}
         </Link>
-        <Link href="/cookies" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "0.8rem" }}>
-          Cookie Settings
+        <Link href={locale === "en" ? "/cookies" : `${homePath(locale)}/cookies`} style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "0.8rem" }}>
+          {interfaceCopy[locale].cookies}
         </Link>
       </div>
       <p className="footer-text" style={{ marginTop: "2rem", fontSize: "0.9rem", fontWeight: 600, color: "var(--color-gold)" }}>
@@ -689,7 +685,7 @@ function Footer() {
 function QuickNav() {
   const { t, locale } = useLang();
   const items: { label: string; href: string }[] = [
-    { label: t.visiting.price.title, href: locale === "es" ? "/es/entradas-precios" : "/entrance-fees" },
+    { label: t.visiting.price.title, href: locale === "es" ? "/es/entradas-precios" : locale === "en" ? "/entrance-fees" : "#visiting" },
     { label: t.visiting.hours.title, href: "#visiting" },
     { label: t.tips.title, href: "#tips" },
     { label: t.transportation.title, href: "#transportation" },

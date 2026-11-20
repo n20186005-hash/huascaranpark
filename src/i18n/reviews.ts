@@ -1,0 +1,8 @@
+export const googleReviews = [
+  { locale: "es", name: "María G.", avatar: "MG", rating: 5, date: "2024-11-20", text: "Un lugar simplemente espectacular. Las montañas son imponentes y los paisajes de otro mundo. Hice el trek Santa Cruz y fue una experiencia inolvidable. Lo recomiendo mucho." },
+  { locale: "en", name: "John S.", avatar: "JS", rating: 5, date: "2024-10-15", text: "Huascarán National Park is absolutely breathtaking! The Cordillera Blanca is the most beautiful mountain range I've ever seen. The Llanganuco lakes are a must-visit. Will definitely come back for the Huayhuash trek!" },
+  { locale: "es", name: "Carlos R.", avatar: "CR", rating: 5, date: "2024-09-10", text: "Un paraíso para los amantes del trekking y la naturaleza. El Parque Nacional Huascarán es Patrimonio Mundial por algo. Las lagunas, los nevados, la flora y fauna... todo es increíble." },
+  { locale: "zh", name: "李小美", avatar: "李", rating: 5, date: "2024-08-25", text: "瓦斯卡兰国家公园真的很美！布兰卡山脉的雪峰令人震撼，高原湖泊的颜色像绿松石一样美丽。我们走了一日游路线，虽然有点高原反应，但非常值得。" },
+  { locale: "es", name: "Ana P.", avatar: "AP", rating: 5, date: "2024-07-18", text: "Hermoso parque, muy bien cuidado. La biodiversidad es impresionante, vi cóndores andinos y vicuñas. La cultura quechua de las comunidades locales es muy interesante. Una experiencia completa." },
+  { locale: "en", name: "Michael T.", avatar: "MT", rating: 4, date: "2024-06-05", text: "Amazing national park! The mountains are spectacular. Did the Santa Cruz trek - challenging but worth it. The views of Alpamayo and other 6000m peaks are unforgettable. Highly recommend hiring a local guide." },
+];

@@ -22,7 +22,7 @@ const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "www.huascaranpark
 const TITLES: Record<string, string> = {
   es: "Parque Nacional Huascarán: entradas y rutas desde Huaraz",
   zh: "瓦斯卡兰国家公园：门票、路线与旅行指南 2026",
-  qu: "Huascarán Nasyunal Pak: Puriy Guía 2026",
+  qu: "Huascarán Nasyunal Pak: Puriy 2026",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
@@ -74,22 +74,10 @@ export async function generateMetadata(
         : "%s | Huascarán Nasyunal Pak",
     },
     description,
-    keywords: [
-      "Huascarán National Park",
-      "Parque Nacional Huascarán",
-      "Ancash tourism",
-      "Peru national park",
-      "Cordillera Blanca",
-      "UNESCO World Heritage Site Peru",
-      "Huascarán entrance fee",
-      "Laguna 69",
-      "Santa Cruz Trek",
-      "Huaraz",
-      "trekking Peru",
-    ],
-    authors: [{ name: "Huascarán National Park Travel Guide" }],
-    creator: "Huascarán National Park Travel Guide",
-    publisher: "Huascarán National Park Travel Guide",
+    keywords: [title, siteName, "Cordillera Blanca", "Laguna 69", "Huaraz"],
+    authors: [{ name: siteName }],
+    creator: siteName,
+    publisher: siteName,
     formatDetection: {
       email: false,
       address: false,

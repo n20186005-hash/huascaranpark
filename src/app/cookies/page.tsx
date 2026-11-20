@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
+import { legalMetadata } from "@/i18n/legal-metadata";
 import CookiesClient from "./CookiesClient";
 
-export const metadata: Metadata = {
-  title: "Cookie Settings | Parque Bicentenario Travel Guide",
-  description: "Manage your cookie preferences",
-};
+export const metadata = legalMetadata("en", "cookies");
 
 export default function CookiesPage() {
-  return <CookiesClient />;
+  return <CookiesClient locale="en" />;
 }

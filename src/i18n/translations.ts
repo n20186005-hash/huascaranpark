@@ -384,7 +384,7 @@ export const translations: Record<Locale, Translations> = {
       title: "Qhaway",
       p1: "Huascarán Nasyunal Pak nisqa Piruw Ancash suyupi tiyan. Kayqa UNESCO Pachamama wiñay kawsay, Cordillera Blanca nisqa, tikanpura aswan hanaq urqukuna. Pakpi 27 rit'i urqukuna 6,000 mitru hanaq, Huascarán nisqa Piruw aswan hanaq (6,768 mitru).",
       p2: "Pakqa 3,400 kilometru iskaypatachá, achka ecosistema: rit'i urqukunamanta bosques nubladoskama. Achka rikch'aq uywakuna, pachamama, Puya raimondii (Titanca nisqa). Kaypi Quechua runakuna kawsanku, ñawpa willaykunawan.",
-      highlights: { title: "Rikuy", items: ["Pachamama Wiñay Kawsay: UNESCO 1985", "Aswan hanaq: Huascarán 6,768m", "Rit'i urqukuna: 27 urqu 6,000m hanaq", "Ecosistemakuna: Rit'i urqukunamanta bosques nubladoskama", "Rikch'aq uywakuna: Oso de anteojos, Cóndor, Puya raimondii"] },
+      highlights: { title: "Rikuy", items: ["Pachamama Wiñay Kawsay: UNESCO 1985", "Aswan hanaq: Huascarán 6,768m", "Rit'i urqukuna: 27 urqu 6,000m hanaq", "Ecosistemakuna: Rit'i urqukunamanta bosques nubladoskama", "Rikch'aq uywakuna: ukuku, Cóndor, Puya raimondii"] },
       timeline: { title: "Ñawpa", events: [
         { period: "1975", description: "Huascarán Nasyunal Pak kamarisqa, Cordillera Blanca amachaypaq." },
         { period: "1985", description: "UNESCO Pachamama Wiñay Kawsay, tikanpura aswan rikuriq." },
@@ -406,7 +406,7 @@ export const translations: Record<Locale, Translations> = {
       title: "Pachamama",
       sections: [
         { subtitle: "Rit'i urqukuna", content: "Huascarán Nasyunal Pakqa 27 rit'i urqukunawan, 6,000 mitru hanaq. Huascarán 6,768 mitru, Piruw aswan hanaq.\n\n712 rit'i (glaciares) — tikanpura aswan achka tropical rit'i. Kay rit'ikunaqa mayukunapa yaku maskan. Unquyninwan, rit'ikuna puchukachkan. Pak runakuna maskan, amachan rit'ikunata.\n\n434 quchakuna (cochas): Llanganuco, Parón. Rit'i pichqamanta yaku, turquesa llimp'i." },
-        { subtitle: "Achka rikch'aq uywakuna", content: "Pak 2,000 mitrumanta 6,768 mitrukama. Achka ecosistema, achka rikch'aq uywakuna:\n\n• Sach'akuna: 901 rikch'aq, Puya raimondii (80-100 wata huk kuti wayt'an).\n• P'isqukuna: 201 rikch'aq, Cóndor.\n• Uywakuna: Oso de anteojos (Sudamérica hukllawan), puma, vicuña, alpaca.\n• Sach'akuna: Puna, bofedales, bosques nublados." },
+        { subtitle: "Achka rikch'aq uywakuna", content: "Pak 2,000 mitrumanta 6,768 mitrukama. Achka ecosistema, achka rikch'aq uywakuna:\n\n• Sach'akuna: 901 rikch'aq, Puya raimondii (80-100 wata huk kuti wayt'an).\n• P'isqukuna: 201 rikch'aq, Cóndor.\n• Uywakuna: ukuku (Sudamérica hukllawan), puma, vicuña, alpaca.\n• Sach'akuna: Puna, bofedales, bosques nublados." },
         { subtitle: "Rit'i puchukay: Unquy p'itiy nisqa testigos", content: "Cordillera Blanca tikanpura aswan achka rit'i. 50 watapi 30% puchukarqan. Pastoruri rit'i 'Unquy p'itiy ruta' nisqapi kachkan.\n\nKaypi hamuychik mana atipaypaq, aswan unquy p'itiyta rikuy. Pachamamata amachay. Kayqa allin yachay paq." },
         { subtitle: "Pachamama amachay", content: "Huascarán Nasyunal Pak ecosistemanta k'iri. Rit'i, quchakuna ama waqlliykuchu.\n\nAllin puriy: Ama ñankunata saqiykuchu, ama sach'akunata kuchuykuchu, ama uywakunata waqlliykuchu, ama basurata saqiykuychu. Ama basura plastika apamuychu. Pachamamata yupaychay." }
       ]
@@ -420,8 +420,8 @@ export const translations: Record<Locale, Translations> = {
         { subtitle: "Watakuna", content: "Quechua runakuna achka watakunata waqaychan: Qoyllur Rit'i, Pachamama, Chaccu. Kaykunapi, runakuna tusun, t'inkakunata ruwan.\n\nPuriquqkuna chayrikuskun, costumbrekunata rikunku. Ama hina kachun, Ama ñankunata saqiykuchu." }
       ],
       events: { title: "Ruwaykuna", items: [
-        "Trekking: Santa Cruz, Laguna 69",
-        "Andinismo: Huascarán",
+        "Chaki puriy: Santa Cruz, Laguna 69",
+        "Urquman wichay: Huascarán",
         "P'isqukunata rikuy: Cóndor",
         "Rikuy: Rit'i urqukuna, quchakuna",
         "Quechua simita yachay",
@@ -430,24 +430,24 @@ export const translations: Record<Locale, Translations> = {
     },
     visiting: {
       title: "Puriy",
-      hours: { title: "Punchaw", content: "Oficial: 08:30 – 15:00, lunes–viernes\nSapa sector tiyan, punchaw tikray", note: "⚠️ SERNANP kamachin. Sapa punku tiyan. +51 43 422 086." },
-      price: { title: "Qullqi", content: "Jatun mama llacta (p'unchawkama):\n• 1 punchaw: S/30 (aprox. $8–9 USD)\n• 2–3 punchaw: aprox. S/60\n• 4–30 punchaw: aprox. S/150\n\nPiruw kuraq runakuna, huk punchaw: S/12\nLlaqta kuraq runakuna, huk punchaw: S/5\n\nAchka ñankunapi sapa qullqi: Laguna 69, Pico Mateo. SERNANP kamachin, tikrayta atin. Achka sector SERNANP autorizado operadorwan puriy.", note: "⚠️ 2026 noviembre verificasqa · SERNANP (visitAANP). Allqukunata ama apamuychu. Achka sector guía munan. +51 43 422 086." },
-      duration: { title: "Unay", content: "1 – 7 p'unchaw", note: "Trekking: 3-7 p'unchaw" },
-      birds: { title: "Uywakunata rikuy", content: "Cóndor (3.2 mitru iskay patakuna), Oso de anteojos, Vicuña, Puya raimondii. Achka rikch'aq." },
-      bring: { title: "Apamuy", items: ["Ch'irita (rit'i patsallapi)", "Intita amachakuy", "Ukyata apamuy", "Bastones de trekking", "Puñuna (achka p'unchaw trekking)"] },
-      route: { title: "Exploración", content: "1. Sapa p'unchaw: Llanganuco\n2. Laguna 69 (1 p'unchaw)\n3. Santa Cruz (4-5 p'unchaw)\n4. Pastoruri Rit'i (Unquy p'itiy)\n5. Andinismo: Huascarán\n\nAma hina kachun, guía apamuy." }
+      hours: { title: "Punchaw", content: "SERNANP: 08:30–15:00, killachawmanta ch’askachawkama\nSapa punkupa pacha tikrakunman", note: "⚠️ SERNANP kamachin. Sapa punku tiyan. +51 43 422 086." },
+      price: { title: "Qullqi", content: "Hawa suyumanta hamuqkuna (p'unchawkama):\n• 1 punchaw: S/30 (yaqa $8–9 USD)\n• 2–3 punchaw: yaqa S/60\n• 4–30 punchaw: yaqa S/150\n\nPiruw kuraq runakuna, huk punchaw: S/12\nLlaqta kuraq runakuna, huk punchaw: S/5\n\nAchka ñankunapi sapa qullqi: Laguna 69, Pico Mateo. SERNANP kamachin, tikrayta atin. Wakin ñankunapi SERNANP saqisqan purichiqwan puriy.", note: "⚠️ 2026 watapa chunka hukniyuq killanpi qhawasqa · SERNANP (visitAANP). Allqukunata ama apamuychu. Wakin ñankunapi pusay munakun. +51 43 422 086." },
+      duration: { title: "Unay", content: "1 – 7 p'unchaw", note: "Chaki puriy: 3-7 p'unchaw" },
+      birds: { title: "Uywakunata rikuy", content: "Cóndor (3.2 mitru iskay patakuna), ukuku, wikuña, Puya raimondii. Achka rikch'aq." },
+      bring: { title: "Apamuy", items: ["Ch'irita (rit'i patsallapi)", "Intita amachakuy", "Ukyata apamuy", "Purina tawna", "Puñuna (achka p'unchaw chaki puriy)"] },
+      route: { title: "Ñankunata riqsiy", content: "1. Sapa p'unchaw: Llanganuco\n2. Laguna 69 (1 p'unchaw)\n3. Santa Cruz (4-5 p'unchaw)\n4. Pastoruri Rit'i (Unquy p'itiy)\n5. Urquman wichay: Huascarán\n\nAma hina kachun, guía apamuy." }
     },
     transportation: {
       title: "Chaykamuy",
-      airport: { title: "Lima nisqamanta", content: "Lima nisqapi 450 km karu, 8-10 ura. Tukuyn puriquqkuna huq Huaraz-man chayan tiyan — Cordillera Blanca nispa base camp.", options: [
-        { name: "Ómnibus (Pisi qullqi)", price: "$20 - $40", time: "8-10 ura", steps: ["Lima nisqapi ómnibus apamuy", "Huaraz man chayamuy (Ancash suyu uma llaqta)", "Huaraz-pi equipo alquilay, altura wañay", "Huaraz-manta Yungay-man 1.5 ura"] },
-        { name: "Auto (Allin)", price: "$150 - $250", time: "8-10 ura", steps: ["Auto alquilar", "Huaraz man chayamuy", "Huaraz-pi 1-2 punchaw permaneciy altura wañanapaq"] }
+      airport: { title: "Lima nisqamanta", content: "Lima nisqapi 450 km karu, 8-10 ura. Tukuyn puriquqkuna huq Huaraz-man chayan tiyan — Cordillera Blanca-man purinapaq qallariy llaqta.", options: [
+        { name: "Ómnibus (Pisi qullqi)", price: "$20 - $40", time: "8-10 ura", steps: ["Lima nisqapi ómnibus apamuy", "Huaraz man chayamuy (Ancash suyu uma llaqta)", "Huaraz-pi purina llamk’anakunata mañakuy, hanaq pachaman yachakuy", "Huaraz-manta Yungay-man 1.5 ura"] },
+        { name: "Auto (Allin)", price: "$150 - $250", time: "8-10 ura", steps: ["Karruta mañakuy", "Huaraz man chayamuy", "Huaraz-pi huk utaq iskay punchaw qipay hanaq pachaman yachanapaq"] }
       ]},
-      city: { title: "Huaraz nisqamanta Yungay/Caraz-man", content: "Huaraz nisqa Cordillera Blanca nispa aswan base camp. Tukuyn puriquqkuna huq hamun, equipo alquilay, altura wañay.", steps: ["Huaraz nisqapi ómnibus Caraz-man (2 ura)", "Google Maps nisqapi maskuy", "Yungay nisqapi 30 uchu", "Caraz nisqapi 1 ura"] },
-      selfDrive: { title: "Kuti puriy", content: "Kuti puriy allin, aswan hanaq. Huaraz-pi altura wañay.", steps: ["Google Maps nisqapi maskuy", "Kuti puriy", "Huaraz (3,052m) 1-2 punchaw permaneciy", "Chaymantá park entrances-man"] }
+      city: { title: "Huaraz nisqamanta Yungay/Caraz-man", content: "Huaraz nisqa Cordillera Blanca nispa aswan base camp. Tukuyn puriquqkuna huq hamun, purina llamk’anakunata mañakuy, hanaq pachaman yachakuy.", steps: ["Huaraz nisqapi ómnibus Caraz-man (2 ura)", "Google Maps nisqapi maskuy", "Yungay nisqapi 30 uchu", "Caraz nisqapi 1 ura"] },
+      selfDrive: { title: "Kuti puriy", content: "Kuti puriy allin, aswan hanaq. Huaraz-pi altura wañay.", steps: ["Google Maps nisqapi maskuy", "Kuti puriy", "Huaraz (3,052m) huk utaq iskay punchaw qipay", "Chaymanta pakpa punkukunaman"] }
     },
     tips: { title: "Yachay", items: [
-      "Permiso mañakuy. Guía apamuy.",
+      "Yaykunapaq saqiyta mañakuy. Pusaqwan puriy.",
       "Soroche ama kachun. Allinta puriy.",
       "Ch'uspi mana kachun (bosques nublados)",
       "Intita amachakuy (rit'i patsallapi inti achka)",
@@ -457,27 +457,27 @@ export const translations: Record<Locale, Translations> = {
       "Quechua runakunata yupaychay"
     ] },
     gallery: { title: "Rikuy", viewMore: "Google Maps nisqapi astawan rikuy" },
-    reviews: { title: "Exploradores niykuna", subtitle: "Andes nispaq niykuna: Google Maps", viewMore: "Astawan niykuna" },
+    reviews: { title: "Puriqkunapa nisqankuna", subtitle: "Andes nispaq niykuna: Google Maps", viewMore: "Astawan niykuna" },
     faq: { title: "Tapuykuna", subtitle: "Yachay", items: [
-      { question: "Huascarán Nasyunal Pak hayk'aq kachkan?", answer: "06:00-18:00. Sapa punku tiyan. +51 43 422 086." },
-      { question: "Qullqi paganan chá?", answer: "Jatun mama llacta: 30 PEN. Piruw runakuna: 11 PEN." },
-      { question: "Imakunata ruway atikun?", answer: "Trekking, andinismo, p'isqukunata rikuy, foto. Achka ruwaykuna." },
+      { question: "Huascarán Nasyunal Pak hayk'aq kachkan?", answer: "SERNANP: 08:30–15:00, killachawmanta ch’askachawkama. Sapa punkupa pachanta tapuy. +51 43 422 086." },
+      { question: "Hayk’a qullqitam qulluchina?", answer: "Hawa suyumanta hamuqkuna: S/30. Piruw kuraq runakuna: S/12." },
+      { question: "Imakunata ruway atikun?", answer: "Chaki puriy, urquman wichay, p'isqukunata rikuy, foto. Achka ruwaykuna." },
       { question: "Maymantá chayamuy atikun?", answer: "Lima nisqamanta 8-10 ura. Trujillo nisqamanta 4-5 ura." },
-      { question: "Yachay munay?", answer: "Soroche ama kachun. Ch'irita apamuy. Guía apamuy." },
-      { question: "Pak ñawpin imakunata rikuy atikun?", answer: "Ancash suyupi achka rikuna:\n1. Chavín de Huántar — UNESCO, 3,000 watamanta ñawpa\n2. Campo Santo de Yungay — 1970 avalanche, histórica\n3. Baños Termales de Monterrey — unquy\n4. Huaraz — Ancash uma llaqta, trekking\n5. Mercados — artesanía" }
+      { question: "Yachay munay?", answer: "Soroche ama kachun. Ch'irita apamuy. Pusaqwan puriy." },
+      { question: "Pak ñawpin imakunata rikuy atikun?", answer: "Ancash suyupi achka rikuna:\n1. Chavín de Huántar — UNESCO, 3,000 watamanta ñawpa\n2. Campo Santo de Yungay — 1970 watapi urqumi urmaykurqa\n3. Baños Termales de Monterrey — unquy\n4. Huaraz — Ancash uma llaqta, chaki puriy\n5. Qhatukuna — makiwan ruwasqa imakuna" }
     ]},
     location: { title: "Maypipas", address: "275M+J8Q, Yungay\nPiruw, Ancash", openMaps: "Google Maps nisqapi maytapas rikuy" },
-    glance: { title: "Huascarán Nasyunal Pak Qhaway", caption: "Allin willay oficial nisqawan", items: [
+    glance: { title: "Huascarán Nasyunal Pak Qhaway", caption: "Kamachiqpa allin willakuynin", items: [
       { value: "340,000 ha", label: "Tiyay (UNESCO)" },
       { value: "6,768 m", label: "Aswan hanaq — Huascarán" },
-      { value: "712", label: "Rit'i (glaciares)" },
+      { value: "712", label: "Rit’i" },
       { value: "434", label: "Quchakuna" },
       { value: "901", label: "Sach'a rikch'aq" },
       { value: "201", label: "P'isqu rikch'aq" },
       { value: "25", label: "Uywa rikch'aq" },
       { value: "1985", label: "UNESCO Pachamama Wiñay" },
       { value: "Mayu–Uku", label: "Allin p'unchaw puriy" }
-    ], source: "UNESCO & SERNANP (visitAANP)", sourceUrl: "https://visitaareasnaturales.sernanp.gob.pe/anps/parque-nacional-huascaran/", verified: "Wañuy: 2026 octubre" },
+    ], source: "UNESCO & SERNANP (visitAANP)", sourceUrl: "https://visitaareasnaturales.sernanp.gob.pe/anps/parque-nacional-huascaran/", verified: "2026 watapa chunka killanpi qhawasqa" },
     footer: { callToAction: "Pachamamata yupaychay, allinta puriy. Pachamama mana waqllinachu.", text: "© 2026 Huascarán Nasyunal Pak. Kayqa puriy yachay, runakunapaq.", made: "Kayqa puriy yachay, runakunapaq.", linksTitle: "Imakunata", links: [
       { name: "MINCETUR", url: "https://www.gob.pe/mincetur" },
       { name: "SERNANP", url: "https://www.gob.pe/sernanp" },

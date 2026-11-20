@@ -1,7 +1,9 @@
+import { interfaceCopy } from "@/i18n/interface";
 export function generateSchema(locale: string) {
   const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "huascaranpark.com"}`;
   const lang = locale === "en" ? "en-US" : locale === "es" ? "es-PE" : locale === "qu" ? "qu-PE" : "zh-CN";
 
+  const homeName = interfaceCopy[locale === "en" || locale === "es" || locale === "qu" ? locale : "zh"].home;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -56,8 +58,8 @@ export function generateSchema(locale: string) {
         "subjectOf": [
           {
             "@type": "CreativeWork",
-            "headline": locale === "en" ? "Huascarán National Park: Peru's Alpine Paradise" : locale === "es" ? "Parque Nacional Huascarán: Paraíso Alpino del Perú" : locale === "qu" ? "Huascarán Nasyunal Pak: Piruw Urqu Paraíso" : "瓦斯卡兰国家公园：秘鲁的高山天堂",
-            "about": "Guide to Huascarán National Park, a UNESCO World Heritage Site in Peru featuring the world's highest tropical mountain range, glaciers, and unique Andean biodiversity"
+            "inLanguage": lang,
+            "headline": locale === "en" ? "Huascarán National Park: Peru's Alpine Paradise" : locale === "es" ? "Parque Nacional Huascarán: Paraíso Alpino del Perú" : locale === "qu" ? "Huascarán Nasyunal Pak: Piruwpa hanaq urqukuna" : "瓦斯卡兰国家公园：秘鲁的高山天堂"
           }
         ]
       },
@@ -67,7 +69,7 @@ export function generateSchema(locale: string) {
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Home",
+            "name": homeName,
             "item": locale === "en" ? `${baseUrl}/` : `${baseUrl}/${locale}`
           },
           {

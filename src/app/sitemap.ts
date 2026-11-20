@@ -1,3 +1,4 @@
+import { legalLocales, legalPath, legalSlugs } from "@/i18n/legal-metadata";
 import { regionalAttractions } from "@/i18n/regional-attractions";
 import { nearby, nearbyPath } from "@/i18n/nearby";
 import type { MetadataRoute } from "next";
@@ -36,7 +37,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const alternates = { languages: absoluteAlternates({ en, es, "x-default": en }) };
       return [en, es].map((path) => ({ url: `${SITE_URL}${path}`, alternates }));
     }),
-    ...["privacy", "terms", "cookies"].map((path) => ({ url: `${SITE_URL}/${path}` })),
+    ...legalSlugs.flatMap((slug) => {
+      const paths = Object.fromEntries(legalLocales.map((locale) => [locale, legalPath(locale, slug)]));
+      const alternates = { languages: absoluteAlternates({ ...paths, "x-default": legalPath("en", slug) }) };
+      return Object.values(paths).map((path) => ({ url: `${SITE_URL}${path}`, alternates }));
+    }),
   ];
   return entries;
 }
