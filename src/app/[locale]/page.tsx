@@ -672,13 +672,13 @@ function Footer() {
 }
 
 function QuickNav() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
   const items: { label: string; href: string }[] = [
-    { label: t.visiting.price.title, href: "/entrance-fees/" },
+    { label: t.visiting.price.title, href: locale === "es" ? "/es/entradas-precios" : "/entrance-fees" },
     { label: t.visiting.hours.title, href: "#visiting" },
     { label: t.tips.title, href: "#tips" },
     { label: t.transportation.title, href: "#transportation" },
-    { label: t.visiting.route.title, href: "#visiting" },
+    { label: t.visiting.route.title, href: locale === "es" ? "/es/rutas-desde-huaraz" : locale === "en" ? "/huaraz-tours" : "#visiting" },
   ];
   return (
     <div className="quick-nav">

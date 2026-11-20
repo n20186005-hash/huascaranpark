@@ -10,19 +10,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: "Huascarán National Park Entrance Fees & Visiting Info (2026)",
   description:
-    "Huascarán National Park entrance fees, opening hours, where to buy tickets and visiting rules. Verified against SERNANP, October 2026.",
+    "Huascarán National Park entrance fees, opening hours, where to buy tickets and visiting rules. Verified against SERNANP, November 2026.",
   alternates: {
-    canonical: "/entrance-fees/",
+    canonical: "/entrance-fees",
     languages: {
-      en: "/entrance-fees/",
-      es: "/es/entradas-precios/",
-      "x-default": "/entrance-fees/",
+      en: "/entrance-fees",
+      es: "/es/entradas-precios",
+      "x-default": "/entrance-fees",
     },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: `${baseUrl}/entrance-fees/`,
+    url: `${baseUrl}/entrance-fees`,
     title: "Huascarán National Park Entrance Fees & Visiting Info (2026)",
     description:
       "Huascarán National Park entrance fees, opening hours, where to buy tickets and visiting rules.",

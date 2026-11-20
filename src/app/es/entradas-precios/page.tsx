@@ -10,19 +10,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: "Entradas del Parque Nacional Huascarán y Visita (2026)",
   description:
-    "Tarifas de entrada, horarios, dónde comprar boletos y normas de visita del Parque Nacional Huascarán. Verificado con SERNANP, octubre de 2026.",
+    "Tarifas de entrada, horarios, dónde comprar boletos y normas de visita del Parque Nacional Huascarán. Verificado con SERNANP, noviembre de 2026.",
   alternates: {
-    canonical: "/es/entradas-precios/",
+    canonical: "/es/entradas-precios",
     languages: {
-      es: "/es/entradas-precios/",
-      en: "/entrance-fees/",
-      "x-default": "/entrance-fees/",
+      es: "/es/entradas-precios",
+      en: "/entrance-fees",
+      "x-default": "/entrance-fees",
     },
   },
   openGraph: {
     type: "website",
     locale: "es_PE",
-    url: `${baseUrl}/es/entradas-precios/`,
+    url: `${baseUrl}/es/entradas-precios`,
     title: "Entradas del Parque Nacional Huascarán y Visita (2026)",
     description:
       "Tarifas de entrada, horarios, dónde comprar boletos y normas de visita del Parque Nacional Huascarán.",

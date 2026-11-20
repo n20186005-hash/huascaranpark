@@ -27,9 +27,9 @@ const CONTENT: Record<"en" | "es", Content> = {
   en: {
     eyebrow: "PLAN YOUR VISIT",
     title: "Huascarán National Park Entrance Fees & Visiting Info",
-    verified: "Last verified: October 2026 · Source: SERNANP (visitAANP)",
+    verified: "Last verified: November 2026 · Source: SERNANP (visitAANP)",
     intro:
-      "Huascarán National Park is a protected area managed by SERNANP (Peru's National Service of Natural Protected Areas). Entrance fees and visiting rules are set by SERNANP and can change. The details below reflect the official visitor page and were last checked in October 2026.",
+      "Huascarán National Park is a protected area managed by SERNANP (Peru's National Service of Natural Protected Areas). Entrance fees and visiting rules are set by SERNANP and can change. The details below reflect the official visitor page and were last checked in November 2026.",
     hoursTitle: "Opening Hours",
     hours:
       "Official visiting hours: 08:30 – 15:00, Monday to Friday. Some sectors and trekking entrances may open earlier; hours vary by sector and season.",
@@ -38,13 +38,13 @@ const CONTENT: Record<"en" | "es", Content> = {
       { title: "Foreign · 1-day", price: "S/30", note: "≈ $8–9 USD general ticket" },
       { title: "Foreign · 2–3 days", price: "S/60", note: "Approx. multi-day ticket" },
       { title: "Foreign · 4–30 days", price: "S/150", note: "Approx. extended ticket" },
-      { title: "Peruvian national", price: "S/11", note: "Approx. with valid ID" },
-      { title: "Local community", price: "Free", note: "Residents of surrounding districts" },
+      { title: "Peruvian national", price: "S/12", note: "Standard adult day ticket" },
+      { title: "Local community", price: "S/5", note: "Standard adult day ticket for eligible residents with DNI" },
       { title: "Laguna 69 / Pico Mateo", price: "Separate", note: "These sectors have their own rates" },
     ],
     buyTitle: "Where to Buy & How to Visit",
     buy:
-      "Tickets are sold at SERNANP entrance stations and authorized offices. Several sectors — including Laguna 69 and parts of the Santa Cruz Trek — can only be visited with a SERNANP-authorised tour operator. Most travellers arrange permits, guides and transport from Huaraz, the main gateway town.",
+      "SERNANP directs visitors to authorized operators. Confirm with the operator how admission is arranged for your sector and date. Most travellers arrange permits, guides and transport from Huaraz, the main gateway town.",
     rulesTitle: "Rules to Know",
     rules: [
       "Pets are strictly prohibited to protect Andean wildlife.",
@@ -55,8 +55,8 @@ const CONTENT: Record<"en" | "es", Content> = {
     faqTitle: "Frequently Asked Questions",
     relatedTitle: "More planning guides",
     related: [
-      { label: "Laguna 69", href: "/" },
-      { label: "Santa Cruz Trek", href: "/" },
+      { label: "Laguna 69", href: "/huaraz-tours#laguna-69" },
+      { label: "Santa Cruz Trek", href: "/huaraz-tours#santa-cruz" },
       { label: "How to Get There", href: "/#transportation" },
       { label: "Travel Tips", href: "/#tips" },
     ],
@@ -65,9 +65,9 @@ const CONTENT: Record<"en" | "es", Content> = {
   es: {
     eyebrow: "PLANEA TU VISITA",
     title: "Entradas y Información de Visita del Parque Nacional Huascarán",
-    verified: "Última verificación: octubre de 2026 · Fuente: SERNANP (visitAANP)",
+    verified: "Última verificación: noviembre de 2026 · Fuente: SERNANP (visitAANP)",
     intro:
-      "El Parque Nacional Huascarán es un área protegida administrada por SERNANP (Servicio Nacional de Áreas Naturales Protegidas). Las tarifas y normas de visita las fija SERNANP y pueden cambiar. Los detalles abajo reflejan la página oficial de visitantes y fueron verificados en octubre de 2026.",
+      "El Parque Nacional Huascarán es un área protegida administrada por SERNANP (Servicio Nacional de Áreas Naturales Protegidas). Las tarifas y normas de visita las fija SERNANP y pueden cambiar. Los detalles abajo reflejan la página oficial de visitantes y fueron verificados en noviembre de 2026.",
     hoursTitle: "Horario de Apertura",
     hours:
       "Horario oficial de visita: 08:30 – 15:00, de lunes a viernes. Algunos sectores y entradas de trekking abren antes; varía por sector y temporada.",
@@ -76,13 +76,13 @@ const CONTENT: Record<"en" | "es", Content> = {
       { title: "Extranjero · 1 día", price: "S/30", note: "≈ $8–9 USD boleto general" },
       { title: "Extranjero · 2–3 días", price: "S/60", note: "Aprox. boleto múltiple" },
       { title: "Extranjero · 4–30 días", price: "S/150", note: "Aprox. boleto extendido" },
-      { title: "Nacional peruano", price: "S/11", note: "Aprox. con DNI" },
-      { title: "Comunidad local", price: "Gratis", note: "Residentes de distritos cercanos" },
+      { title: "Nacional peruano", price: "S/12", note: "Entrada general de un día para adultos" },
+      { title: "Comunidad local", price: "S/5", note: "Entrada general de un día para residentes adultos acreditados con DNI" },
       { title: "Laguna 69 / Pico Mateo", price: "Separada", note: "Estos sectores tienen tarifas propias" },
     ],
     buyTitle: "Dónde Comprar y Cómo Visitar",
     buy:
-      "Las entradas se venden en las garitas de SERNANP y oficinas autorizadas. Varios sectores —incluida Laguna 69 y partes del Santa Cruz Trek— solo se visitan con un operador autorizado por SERNANP. La mayoría organiza permisos, guías y transporte desde Huaraz, la ciudad de acceso principal.",
+      "El SERNANP indica que la visita se realiza mediante operadores autorizados. Confirma con el operador cómo se tramita la entrada para tu sector y fecha. La mayoría organiza permisos, guías y transporte desde Huaraz, la ciudad de acceso principal.",
     rulesTitle: "Normas Importantes",
     rules: [
       "Se prohíben estrictamente las mascotas para proteger la fauna andina.",
@@ -93,8 +93,8 @@ const CONTENT: Record<"en" | "es", Content> = {
     faqTitle: "Preguntas Frecuentes",
     relatedTitle: "Más guías de planificación",
     related: [
-      { label: "Laguna 69", href: "/es" },
-      { label: "Santa Cruz Trek", href: "/es" },
+      { label: "Laguna 69", href: "/es/rutas-desde-huaraz#laguna-69" },
+      { label: "Travesía de Santa Cruz", href: "/es/rutas-desde-huaraz#santa-cruz" },
       { label: "Cómo Llegar", href: "/es#transportation" },
       { label: "Consejos de Viaje", href: "/es#tips" },
     ],
@@ -143,7 +143,7 @@ export default function EntranceFeesContent({ locale }: { locale: "en" | "es" })
             {c.title}
           </h1>
           <p style={{ marginTop: "1.25rem", color: "rgba(255,255,255,0.6)", fontSize: "0.85rem" }}>
-            {c.verified}
+            <a href="https://visitaareasnaturales.sernanp.gob.pe/anps/parque-nacional-huascaran/" style={{ color: "inherit", textDecoration: "underline" }}>{c.verified}</a>
           </p>
         </div>
       </header>

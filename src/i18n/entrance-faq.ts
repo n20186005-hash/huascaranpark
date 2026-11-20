@@ -1,7 +1,7 @@
 export const entranceFaqEn = [
   {
     q: "How much is the entrance fee to Huascarán National Park?",
-    a: "Foreign visitors pay a tiered fee: S/30 (≈ $8–9 USD) for a 1-day general ticket, S/60 for 2–3 days, and S/150 for 4–30 days. Peruvian nationals pay about S/11, and local communities enter free. Some sectors — such as Laguna 69 and Pico Mateo — have separate rates set by SERNANP.",
+    a: "Foreign visitors pay a tiered fee: S/30 (≈ $8–9 USD) for a 1-day general ticket, S/60 for 2–3 days, and S/150 for 4–30 days. Standard adult day tickets are S/12 for Peruvian nationals and S/5 for eligible local residents. Some sectors — such as Laguna 69 and Pico Mateo — have separate rates set by SERNANP.",
   },
   {
     q: "What are the official opening hours?",
@@ -9,7 +9,7 @@ export const entranceFaqEn = [
   },
   {
     q: "Where do I buy the entrance ticket?",
-    a: "Tickets are sold at SERNANP entrance stations and authorized offices. Several sectors can only be visited with a SERNANP-authorised tour operator, so arrange this in Huaraz before heading into the park.",
+    a: "SERNANP directs visitors to authorized operators. Ask your operator how the park ticket is arranged for your sector and date.",
   },
   {
     q: "Do I need a guide?",
@@ -24,7 +24,7 @@ export const entranceFaqEn = [
 export const entranceFaqEs = [
   {
     q: "¿Cuánto cuesta la entrada al Parque Nacional Huascarán?",
-    a: "Los visitantes extranjeros pagan una tarifa escalonada: S/30 (aprox. $8–9 USD) por boleto general de 1 día, S/60 por 2–3 días y S/150 por 4–30 días. Los nacionales peruanos pagan aprox. S/11 y las comunidades locales entran gratis. Algunos sectores —como Laguna 69 y Pico Mateo— tienen tarifas separadas fijadas por SERNANP.",
+    a: "Los visitantes extranjeros pagan una tarifa escalonada: S/30 (aprox. $8–9 USD) por boleto general de 1 día, S/60 por 2–3 días y S/150 por 4–30 días. La entrada general de un día para adultos cuesta S/12 para nacionales peruanos y S/5 para residentes locales acreditados. Algunos sectores —como Laguna 69 y Pico Mateo— tienen tarifas separadas fijadas por SERNANP.",
   },
   {
     q: "¿Cuál es el horario oficial de visita?",
@@ -32,7 +32,7 @@ export const entranceFaqEs = [
   },
   {
     q: "¿Dónde compro la entrada?",
-    a: "Las entradas se venden en las garitas de SERNANP y oficinas autorizadas. Varios sectores solo se visitan con un operador autorizado por SERNANP, así que organícelo en Huaraz antes de entrar al parque.",
+    a: "El SERNANP indica que la visita se realiza mediante operadores autorizados. Consulta cómo tramita la entrada el operador para tu sector y fecha.",
   },
   {
     q: "¿Necesito guía?",
