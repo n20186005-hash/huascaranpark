@@ -71,16 +71,18 @@ export default function HuarazGuide({ locale }: { locale: keyof typeof content }
   const t = content[locale];
   const spanish = locale === "es";
   return (
-    <main className="section" lang={locale}>
+    <main className="section travel-guide" lang={locale}>
       <HtmlLangSync locale={locale} />
       <div className="quick-nav">
         <a className="quick-nav-item" href={spanish ? "/es" : "/"}>{t.home}</a>
         <a className="quick-nav-item" href={spanish ? "/es/entradas-precios" : "/entrance-fees"}>{t.tickets}</a>
         <a className="quick-nav-item" href={huarazGuidePaths[spanish ? "en" : "es"]} hrefLang={spanish ? "en" : "es"} lang={spanish ? "en" : "es"}>{spanish ? "English" : "Español"}</a>
       </div>
-      <h1 className="section-title">{t.title}</h1>
-      <div className="section-divider" />
-      <p className="about-text">{t.description}</p>
+      <header className="travel-guide-heading">
+        <h1 className="section-title">{t.title}</h1>
+        <div className="section-divider" />
+        <p className="about-text">{t.description}</p>
+      </header>
       {t.routes.map(([id, name, description], index) => (
         <section key={id} id={id} className="info-card">
           <h2>{name}</h2>

@@ -31,23 +31,27 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
   const details = nearbyDetails[slug][locale];
   const other = slug === "chinancocha" ? "laguna-69" : "chinancocha";
   return (
-    <main className="section" lang={locale}>
+    <main className="section attraction-guide" lang={locale}>
       <HtmlLangSync locale={locale} />
       <div className="quick-nav">
         <a className="quick-nav-item" href={es ? "/es" : "/"}>{es ? "Inicio" : "Home"}</a>
         <a className="quick-nav-item" href={es ? "/es/rutas-desde-huaraz" : "/huaraz-tours"}>{es ? "Rutas desde Huaraz" : "Routes from Huaraz"}</a>
         <a className="quick-nav-item" href={nearbyPath(slug, es ? "en" : "es")} hrefLang={es ? "en" : "es"}>{es ? "English" : "Español"}</a>
       </div>
-      <h1 className="section-title">{place.name}</h1>
-      {place.review && <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {place.elevation}</p>}
-      <p className="about-text">{copy.intro}</p>
-      <VisitSummary site={visitorSite} locale={locale} />
-      <p><a href={place.mapUrl}>{es ? "Ver la laguna en Google Maps" : "View the lake on Google Maps"}</a></p>
-      <figure style={{ margin: "1.5rem 0" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`/attractions/${slug}.webp`} alt={place.name} width={place.width} height={place.height} style={{ width: "100%", height: "auto", display: "block" }} />
-        <figcaption><a href={place.photo}>{es ? "Foto" : "Photo"}: {place.photographer} · Wikimedia Commons</a></figcaption>
-      </figure>
+      <header className="attraction-hero">
+        <div className="attraction-hero-copy">
+          <h1 className="hero-title">{place.name}</h1>
+          {place.review && <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {place.elevation}</p>}
+          <p className="hero-subtitle">{copy.intro}</p>
+          <VisitSummary site={visitorSite} locale={locale} />
+          <p><a className="hero-cta" href={place.mapUrl}>{es ? "Ver la laguna en Google Maps" : "View the lake on Google Maps"}</a></p>
+        </div>
+        <figure className="attraction-hero-photo">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/attractions/${slug}.webp`} alt={place.name} width={place.width} height={place.height} />
+          <figcaption><a href={place.photo}>{es ? "Foto" : "Photo"}: {place.photographer} · Wikimedia Commons</a></figcaption>
+        </figure>
+      </header>
       <section className="info-card">
         <h2>{es ? `Sobre ${place.name}` : `About ${place.name}`}</h2>
         <p>{es ? "El SERNANP administra el Parque Nacional Huascarán y regula el acceso turístico a este sector." : "SERNANP manages Huascarán National Park and oversees visitor access in this sector."}</p>

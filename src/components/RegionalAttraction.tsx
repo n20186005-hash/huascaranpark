@@ -111,25 +111,29 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
   const management = managementBySite[slug];
   const authoritySource = place.authority === "park" ? parkInfo : place.authority === "culture" ? "https://www.gob.pe/cultura" : place.source;
   return (
-    <main className="section" lang={locale}>
+    <main className="section attraction-guide" lang={locale}>
       <HtmlLangSync locale={locale} />
       <div className="quick-nav">
         <a className="quick-nav-item" href={es ? "/es#nearby" : "/#nearby"}>{es ? "Lugares cercanos" : "Nearby places"}</a>
         <a className="quick-nav-item" href={nearbyPath(slug, es ? "en" : "es")} hrefLang={es ? "en" : "es"}>{es ? "English" : "Español"}</a>
       </div>
-      <h1 className="section-title">{place.name}</h1>
-      <p className="about-text">{copy.intro}</p>
-      <VisitSummary site={visitorSite} locale={locale} />
-      <a href={map}>{es ? "Ver ubicación en Google Maps" : "View location on Google Maps"}</a>
-      <figure style={{ margin: "1.5rem 0" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`/attractions/${slug}.webp`} alt={place.photoCaption?.[locale] ?? place.name} width={place.width} height={place.height} style={{ width: "100%", maxHeight: 620, objectFit: "contain", height: "auto", display: "block" }} />
-        <figcaption>
-          {place.photoCaption?.[locale] && <>{place.photoCaption[locale]} · </>}
-          <a href={place.photo}>{place.photographer ? `${place.photographer} · Wikimedia Commons` : "Wikimedia Commons"}</a>
-          {place.photoLicense && <> · <a href={place.photoLicense.url}>{place.photoLicense.name}</a> · {es ? "Imagen redimensionada" : "Resized image"}</>}
-        </figcaption>
-      </figure>
+      <header className="attraction-hero">
+        <div className="attraction-hero-copy">
+          <h1 className="hero-title">{place.name}</h1>
+          <p className="hero-subtitle">{copy.intro}</p>
+          <VisitSummary site={visitorSite} locale={locale} />
+          <a className="hero-cta" href={map}>{es ? "Ver ubicación en Google Maps" : "View location on Google Maps"}</a>
+        </div>
+        <figure className="attraction-hero-photo">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/attractions/${slug}.webp`} alt={place.photoCaption?.[locale] ?? place.name} width={place.width} height={place.height} />
+          <figcaption>
+            {place.photoCaption?.[locale] && <>{place.photoCaption[locale]} · </>}
+            <a href={place.photo}>{place.photographer ? `${place.photographer} · Wikimedia Commons` : "Wikimedia Commons"}</a>
+            {place.photoLicense && <> · <a href={place.photoLicense.url}>{place.photoLicense.name}</a> · {es ? "Imagen redimensionada" : "Resized image"}</>}
+          </figcaption>
+        </figure>
+      </header>
       <section className="info-card">
         <h2>{es ? `Sobre ${place.name}` : `About ${place.name}`}</h2>
         <p>{management?.[locale] ?? manager(place, es)}</p>

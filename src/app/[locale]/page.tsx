@@ -89,11 +89,11 @@ function Nav() {
   return (
     <nav className={`site-nav ${scrolled ? "scrolled" : ""}`}>
       <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-        <span style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", fontWeight: 700, color: "#fff" }}>
+        <span style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", fontWeight: 700, color: "#fff" }} className="site-nav-brand">
           {interfaceCopy[locale].park}
         </span>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+      <div className="site-nav-controls">
         <div className="nav-links">
           <a href="#about">{t.nav.about}</a>
           <a href="#history">{t.nav.history}</a>

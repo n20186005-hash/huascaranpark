@@ -160,7 +160,7 @@ export default function EntranceFeesContent({ locale }: { locale: "en" | "es" })
         </div>
       </header>
 
-      <main className="section">
+      <main className="section travel-guide">
         <p className="about-text">{c.quickAnswer}</p>
         <p className="about-text">
           <a href={PARK_INFO_URL} style={{ textDecoration: "underline" }}>{c.officialFees}</a>
