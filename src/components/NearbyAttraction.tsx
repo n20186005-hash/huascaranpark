@@ -1,3 +1,4 @@
+import { nearbyDetails } from "@/i18n/nearby-details";
 import type { Metadata } from "next";
 import HtmlLangSync from "@/components/HtmlLangSync";
 import { nearby, nearbyPath, parkInfo, type NearbySlug } from "@/i18n/nearby";
@@ -22,6 +23,7 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
   const place = nearby[slug];
   const copy = place[locale];
   const es = locale === "es";
+  const details = nearbyDetails[slug][locale];
   const other = slug === "laguna-69" ? "chinancocha" : "laguna-69";
   return (
     <main className="section" lang={locale}>
@@ -32,6 +34,7 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
         <a className="quick-nav-item" href={nearbyPath(slug, es ? "en" : "es")} hrefLang={es ? "en" : "es"}>{es ? "English" : "Español"}</a>
       </div>
       <h1 className="section-title">{place.name}</h1>
+      <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {place.elevation}</p>
       <p className="about-text">{copy.intro}</p>
       <p><a href={place.mapUrl}>{es ? "Ver la laguna en Google Maps" : "View the lake on Google Maps"}</a></p>
       <figure style={{ margin: "1.5rem 0" }}>
@@ -40,17 +43,20 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
         <figcaption><a href={place.photo}>{es ? "Foto" : "Photo"}: {place.photographer} · Wikimedia Commons</a></figcaption>
       </figure>
       <section className="info-card">
-        <h2>{es ? "Gestión del lugar" : "Who manages the site"}</h2>
+        <h2>{es ? `Sobre ${place.name}` : `About ${place.name}`}</h2>
         <p>{es ? "El SERNANP administra el Parque Nacional Huascarán y regula el acceso turístico a este sector." : "SERNANP manages Huascarán National Park and oversees visitor access in this sector."}</p>
+        <p>{details.history}</p>
         <p><a href={parkInfo}>{es ? "Información oficial del parque" : "Official park information"}</a></p>
       </section>
       <section className="info-card">
         <h2>{es ? "Información básica" : "Basic information"}</h2>
         <dl>
           <dt>{es ? "Ubicación" : "Location"}</dt><dd>Yungay, Áncash, {es ? "Perú" : "Peru"}</dd>
+          <dt>{es ? "Tipo de lugar" : "Site type"}</dt><dd>{es ? "Laguna glaciar" : "Glacial lake"}</dd>
           <dt>{es ? "Altitud" : "Elevation"}</dt><dd>{place.elevation}</dd>
           <dt>{es ? "Entradas y acceso" : "Admission and access"}</dt><dd>{copy.access}</dd>
         </dl>
+        <p>{es ? "Consulta los horarios y las tarifas vigentes para el sector antes de partir." : "Check the current hours and applicable rates for this sector before leaving."}</p>
         <p><a href={es ? "/es/entradas-precios" : "/entrance-fees"}>{es ? "Tarifas y horarios del parque" : "Park fees and opening hours"}</a></p>
       </section>
       <section className="info-card">
@@ -59,6 +65,22 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
         <p><a href={mapLink(place.accessQuery)}>{es ? "Ver el acceso en Google Maps" : "View the access point on Google Maps"}</a></p>
         <h3>{es ? "Ruta de visita" : "Visit itinerary"}</h3>
         <ol>{copy.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+      </section>
+      <section className="info-card">
+        <h2>{es ? "Consejos y qué observar" : "Visit tips and what to look for"}</h2>
+        <p>{details.advice}</p>
+        <p>{details.highlights}</p>
+        <h3>{es ? "Dónde tomar fotos" : "Where to take photos"}</h3>
+        <p>{details.photography}</p>
+      </section>
+      <section className="info-card">
+        <h2>{es ? "Preguntas frecuentes" : "Frequently asked questions"}</h2>
+        {details.faq.map(([question, answer]) => (
+          <details key={question}>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
       </section>
       <section className="info-card">
         <h2>{es ? "Opiniones de visitantes" : "Visitor reviews"}</h2>
@@ -70,6 +92,7 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
         <ul>
           <li><a href={`https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=${place.inventory}`}>MINCETUR · {place.name}</a></li>
           {slug === "laguna-69" && <li><a href="https://www.gob.pe/institucion/sernanp/noticias/1221954-parque-nacional-huascaran-fortalece-un-turismo-sostenible-y-ordenado-en-rutas-del-sector-llanganuco">SERNANP · {es ? "Operadores autorizados" : "Authorized operators"}</a></li>}
+          <li><a href="https://whc.unesco.org/en/list/333/">UNESCO · {es ? "Parque Nacional Huascarán" : "Huascarán National Park"}</a></li>
           <li><a href={nearbyPath(other, locale)}>{nearby[other].name}</a></li>
         </ul>
       </section>
