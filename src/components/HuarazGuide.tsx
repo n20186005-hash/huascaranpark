@@ -1,3 +1,5 @@
+import ParkVisitDetails from "@/components/ParkVisitDetails";
+import { nearbyPath } from "@/i18n/nearby";
 import type { Metadata } from "next";
 import HtmlLangSync from "@/components/HtmlLangSync";
 
@@ -84,6 +86,8 @@ export default function HuarazGuide({ locale }: { locale: keyof typeof content }
           <h2>{name}</h2>
           <p>{description}</p>
           <p><a href={maps[index]}>{t.map}</a></p>
+          {id === "llanganuco" && <p><a href={nearbyPath("chinancocha", locale)}>{spanish ? "Guía de la laguna Chinancocha" : "Chinancocha lake guide"}</a></p>}
+          {id === "laguna-69" && <p><a href={nearbyPath(id, locale)}>{spanish ? "Guía de la Laguna 69" : "Laguna 69 trail guide"}</a></p>}
         </section>
       ))}
       <section className="info-card">
@@ -99,6 +103,7 @@ export default function HuarazGuide({ locale }: { locale: keyof typeof content }
           <li><a href={trekGuide}>PROMPERÚ · Trekking en Áncash</a></li>
         </ul>
       </section>
+      <ParkVisitDetails locale={locale} />
     </main>
   );
 }

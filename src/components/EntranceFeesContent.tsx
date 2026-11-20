@@ -1,5 +1,7 @@
 "use client";
 
+import ParkVisitDetails from "@/components/ParkVisitDetails";
+import { nearbyPath } from "@/i18n/nearby";
 import { useState } from "react";
 import { entranceFaqEn, entranceFaqEs } from "@/i18n/entrance-faq";
 
@@ -62,6 +64,7 @@ const CONTENT: Record<"en" | "es", Content> = {
     relatedTitle: "More planning guides",
     related: [
       { label: "Laguna 69", href: "/huaraz-tours#laguna-69" },
+      { label: "Laguna 69 trail guide", href: nearbyPath("laguna-69", "en") },
       { label: "Santa Cruz Trek", href: "/huaraz-tours#santa-cruz" },
       { label: "How to Get There", href: "/#transportation" },
       { label: "Travel Tips", href: "/#tips" },
@@ -102,6 +105,7 @@ const CONTENT: Record<"en" | "es", Content> = {
     relatedTitle: "Más guías de planificación",
     related: [
       { label: "Laguna 69", href: "/es/rutas-desde-huaraz#laguna-69" },
+      { label: "Guía de la Laguna 69", href: nearbyPath("laguna-69", "es") },
       { label: "Travesía de Santa Cruz", href: "/es/rutas-desde-huaraz#santa-cruz" },
       { label: "Cómo Llegar", href: "/es#transportation" },
       { label: "Consejos de Viaje", href: "/es#tips" },
@@ -192,6 +196,8 @@ export default function EntranceFeesContent({ locale }: { locale: "en" | "es" })
             ))}
           </ul>
         </div>
+
+        <ParkVisitDetails locale={locale} />
 
         <h2 className="section-title" style={{ marginTop: "4rem" }}>{c.faqTitle}</h2>
         <div className="section-divider" />

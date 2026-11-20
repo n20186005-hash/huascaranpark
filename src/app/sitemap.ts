@@ -1,3 +1,4 @@
+import { nearby, nearbyPath } from "@/i18n/nearby";
 import type { MetadataRoute } from "next";
 
 const SITE_URL = `https://${process.env.CURRENT_SITE_DOMAIN || "www.huascaranpark.com"}`;
@@ -28,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}${path}`,
       alternates: { languages: absoluteAlternates({ ...GUIDE_ROUTES, "x-default": GUIDE_ROUTES.en }) },
     })),
+    ...Object.keys(nearby).flatMap((slug) => {
+      const en = nearbyPath(slug, "en");
+      const es = nearbyPath(slug, "es");
+      const alternates = { languages: absoluteAlternates({ en, es, "x-default": en }) };
+      return [en, es].map((path) => ({ url: `${SITE_URL}${path}`, alternates }));
+    }),
     ...["privacy", "terms", "cookies"].map((path) => ({ url: `${SITE_URL}/${path}` })),
   ];
   return entries;
