@@ -12,3 +12,11 @@ export const localeNames: Record<Locale, string> = { en: "English", es: "Españo
 export function homePath(locale: Locale) {
   return locale === "en" ? "/" : `/${locale}`;
 }
+
+
+export const nearbyCopy = {
+  en: { link: "Nearby attractions", heading: "Nearby places to explore", guideLanguage: "" },
+  es: { link: "Lugares cercanos", heading: "Lugares cercanos para visitar", guideLanguage: "" },
+  zh: { link: "周边景点", heading: "周边景点与游览指南", guideLanguage: "景点详情为英文。" },
+  qu: { link: "Qaylla watukuna kitikuna", heading: "Qaylla watukuna kitikuna", guideLanguage: "Sapa kitiq willakuynin kastilla simipi." },
+} satisfies Record<Locale, { link: string; heading: string; guideLanguage: string }>;

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { LangProvider, useLang } from "@/components/LangProvider";
 import type { Locale } from "@/i18n/translations";
 import { useTheme } from "next-themes";
-import { interfaceCopy, homePath } from "@/i18n/interface";
+import { interfaceCopy, homePath, nearbyCopy } from "@/i18n/interface";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { regionalAttractions } from "@/i18n/regional-attractions";
 import { nearby, nearbyPath } from "@/i18n/nearby";
@@ -100,9 +100,7 @@ function Nav() {
           <a href="#ecology">{t.nav.ecology}</a>
           <a href="#culture">{t.nav.culture}</a>
           <a href="#visiting">{t.nav.visiting}</a>
-          {(locale === "en" || locale === "es") && (
-            <a href="#nearby">{locale === "es" ? "Lugares cercanos" : "Nearby places"}</a>
-          )}
+          <a href="#nearby">{nearbyCopy[locale].link}</a>
           <a href="#transportation">{t.nav.transportation}</a>
           <a href="#tips">{t.nav.tips}</a>
           <a href="#gallery">{t.gallery.title}</a>
@@ -118,7 +116,7 @@ function Nav() {
 }
 
 function Hero() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
   return (
     <section className="hero">
       <div className="hero-bg" />
@@ -128,12 +126,15 @@ function Hero() {
         <p className="hero-tagline">{t.hero.tagline}</p>
         <h1 className="hero-title">{t.hero.title}</h1>
         <p className="hero-subtitle">{t.hero.subtitle}</p>
-        <a href="#about" className="hero-cta">
-          {t.hero.cta}
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M7 17L17 7M17 7H7M17 7V17" />
-          </svg>
-        </a>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+          <a href="#about" className="hero-cta">
+            {t.hero.cta}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+          <a href="#nearby" className="hero-cta">{nearbyCopy[locale].link}</a>
+        </div>
       </div>
       <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
         <div className="hero-meta">
@@ -685,6 +686,7 @@ function Footer() {
 function QuickNav() {
   const { t, locale } = useLang();
   const items: { label: string; href: string }[] = [
+    { label: nearbyCopy[locale].link, href: "#nearby" },
     { label: t.visiting.price.title, href: locale === "es" ? "/es/entradas-precios" : locale === "en" ? "/entrance-fees" : "#visiting" },
     { label: t.visiting.hours.title, href: "#visiting" },
     { label: t.tips.title, href: "#tips" },
@@ -732,19 +734,19 @@ function Glance() {
 
 function NearbyPlaces() {
   const { locale } = useLang();
-  if (locale !== "en" && locale !== "es") return null;
-
-  const spanish = locale === "es";
+  const copy = nearbyCopy[locale];
+  const guideLocale = locale === "es" || locale === "qu" ? "es" : "en";
   const places = [...Object.entries(nearby), ...Object.entries(regionalAttractions)];
   return (
-    <section id="nearby" className="section">
-      <h2 className="section-title">{spanish ? "Lugares cercanos para visitar" : "Nearby places to explore"}</h2>
+    <section id="nearby" className="section" style={{ scrollMarginTop: "5rem" }}>
+      <h2 className="section-title">{copy.heading}</h2>
       <div className="section-divider" />
+      {copy.guideLanguage && <p className="about-text">{copy.guideLanguage}</p>}
       <div className="info-grid">
         {places.map(([slug, place]) => (
           <div key={slug} className="info-card">
-            <h3 className="info-card-content"><Link href={nearbyPath(slug, locale)}>{place.name}</Link></h3>
-            <p className="info-card-note">{place[locale].intro}</p>
+            <h3 className="info-card-content"><Link href={nearbyPath(slug, guideLocale)} hrefLang={guideLocale}>{place.name}</Link></h3>
+            {locale === guideLocale && <p className="info-card-note">{place[guideLocale].intro}</p>}
           </div>
         ))}
       </div>
