@@ -24,7 +24,7 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
   const copy = place[locale];
   const es = locale === "es";
   const details = nearbyDetails[slug][locale];
-  const other = slug === "laguna-69" ? "chinancocha" : "laguna-69";
+  const other = slug === "chinancocha" ? "laguna-69" : "chinancocha";
   return (
     <main className="section" lang={locale}>
       <HtmlLangSync locale={locale} />
@@ -34,12 +34,12 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
         <a className="quick-nav-item" href={nearbyPath(slug, es ? "en" : "es")} hrefLang={es ? "en" : "es"}>{es ? "English" : "Español"}</a>
       </div>
       <h1 className="section-title">{place.name}</h1>
-      <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {place.elevation}</p>
+      {place.review && <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {place.elevation}</p>}
       <p className="about-text">{copy.intro}</p>
       <p><a href={place.mapUrl}>{es ? "Ver la laguna en Google Maps" : "View the lake on Google Maps"}</a></p>
       <figure style={{ margin: "1.5rem 0" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`/attractions/${slug}.webp`} alt={place.name} width={1200} height={slug === "laguna-69" ? 800 : 900} style={{ width: "100%", height: "auto", display: "block" }} />
+        <img src={`/attractions/${slug}.webp`} alt={place.name} width={place.width} height={place.height} style={{ width: "100%", height: "auto", display: "block" }} />
         <figcaption><a href={place.photo}>{es ? "Foto" : "Photo"}: {place.photographer} · Wikimedia Commons</a></figcaption>
       </figure>
       <section className="info-card">
@@ -51,9 +51,9 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
       <section className="info-card">
         <h2>{es ? "Información básica" : "Basic information"}</h2>
         <dl>
-          <dt>{es ? "Ubicación" : "Location"}</dt><dd>Yungay, Áncash, {es ? "Perú" : "Peru"}</dd>
+          <dt>{es ? "Ubicación" : "Location"}</dt><dd>{place.locality}, Áncash, {es ? "Perú" : "Peru"}</dd>
           <dt>{es ? "Tipo de lugar" : "Site type"}</dt><dd>{es ? "Laguna glaciar" : "Glacial lake"}</dd>
-          <dt>{es ? "Altitud" : "Elevation"}</dt><dd>{place.elevation}</dd>
+          {place.elevation && <><dt>{es ? "Altitud" : "Elevation"}</dt><dd>{place.elevation}</dd></>}
           <dt>{es ? "Entradas y acceso" : "Admission and access"}</dt><dd>{copy.access}</dd>
         </dl>
         <p>{es ? "Consulta los horarios y las tarifas vigentes para el sector antes de partir." : "Check the current hours and applicable rates for this sector before leaving."}</p>
@@ -84,16 +84,17 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
       </section>
       <section className="info-card">
         <h2>{es ? "Opiniones de visitantes" : "Visitor reviews"}</h2>
-        <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {es ? "Google, según Wanderlog, consultado el 20 de noviembre de 2026" : "Google via Wanderlog, checked November 20, 2026"}</p>
-        <p><a href={place.review.source}>{es ? "Ver puntuación y opiniones" : "View rating and reviews"}</a></p>
+        {place.review && <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {es ? "Google, según Wanderlog, consultado el 20 de noviembre de 2026" : "Google via Wanderlog, checked November 20, 2026"}</p>}
+        <p><a href={place.review?.source ?? place.mapUrl}>{es ? "Ver puntuación y opiniones" : "View rating and reviews"}</a></p>
       </section>
       <section className="info-card">
         <h2>{es ? "Fuentes y lugares cercanos" : "Sources and nearby places"}</h2>
         <ul>
-          <li><a href={`https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=${place.inventory}`}>MINCETUR · {place.name}</a></li>
+          {place.inventory && <li><a href={`https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=${place.inventory}`}>MINCETUR · {place.name}</a></li>}
           {slug === "laguna-69" && <li><a href="https://www.gob.pe/institucion/sernanp/noticias/1221954-parque-nacional-huascaran-fortalece-un-turismo-sostenible-y-ordenado-en-rutas-del-sector-llanganuco">SERNANP · {es ? "Operadores autorizados" : "Authorized operators"}</a></li>}
           <li><a href="https://whc.unesco.org/en/list/333/">UNESCO · {es ? "Parque Nacional Huascarán" : "Huascarán National Park"}</a></li>
           <li><a href={nearbyPath(other, locale)}>{nearby[other].name}</a></li>
+          {slug === "chinancocha" && <li><a href={nearbyPath("orconcocha", locale)}>{nearby.orconcocha.name}</a></li>}
         </ul>
       </section>
     </main>

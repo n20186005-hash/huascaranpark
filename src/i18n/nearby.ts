@@ -1,4 +1,6 @@
-export const nearby = {
+import { lakeEntries } from "./additional-lakes";
+
+const originalLakes = {
   "laguna-69": {
     name: "Laguna 69",
     elevation: "4,604 m",
@@ -44,7 +46,40 @@ export const nearby = {
     },
   },
 };
-export type NearbySlug = keyof typeof nearby;
+export type NearbySlug = keyof typeof originalLakes | keyof typeof lakeEntries;
+
+type NearbyPlace = {
+  name: string;
+  locality: string;
+  elevation?: string;
+  mapUrl: string;
+  accessQuery: string;
+  photo: string;
+  photographer: string;
+  width: number;
+  height: number;
+  inventory?: string;
+  review?: { score: string; count: number; source: string };
+  en: { intro: string; transport: string; steps: string[]; access: string };
+  es: { intro: string; transport: string; steps: string[]; access: string };
+};
+
+function lakePlace(lake: (typeof lakeEntries)[keyof typeof lakeEntries]): NearbyPlace {
+  return {
+    ...lake,
+    mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${lake.name}, ${lake.locality}, Áncash, Perú`)}`,
+    photo: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(lake.photoFile.replaceAll(" ", "_"))}`,
+  };
+}
+
+export const nearby: Record<NearbySlug, NearbyPlace> = {
+  paron: lakePlace(lakeEntries.paron),
+  churup: lakePlace(lakeEntries.churup),
+  llaca: lakePlace(lakeEntries.llaca),
+  orconcocha: lakePlace(lakeEntries.orconcocha),
+  "laguna-69": { ...originalLakes["laguna-69"], locality: "Yungay", width: 1200, height: 800 },
+  chinancocha: { ...originalLakes.chinancocha, locality: "Yungay", width: 1200, height: 900 },
+};
 export function nearbyPath(slug: string, locale: "en" | "es") {
   return locale === "es" ? `/es/explorar/${slug}` : `/explore/${slug}`;
 }

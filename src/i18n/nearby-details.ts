@@ -1,6 +1,8 @@
+import { lakeEntries } from "./additional-lakes";
 import type { NearbySlug } from "./nearby";
 
 export const nearbyDetails = {
+  ...lakeEntries,
   "laguna-69": {
     en: {
       history: "Meltwater from Chacraraju feeds this glacial basin. When UNESCO listed Huascarán National Park in 1985, its deep valleys and glacial lakes were among the features that distinguished the protected landscape. Today SERNANP regulates the Laguna 69 circuit through authorized operators.",

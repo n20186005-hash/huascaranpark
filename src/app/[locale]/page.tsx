@@ -6,7 +6,7 @@ import { LangProvider, useLang } from "@/components/LangProvider";
 import type { Locale } from "@/i18n/translations";
 import { useTheme } from "next-themes";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { nearbyPath } from "@/i18n/nearby";
+import { nearby, nearbyPath } from "@/i18n/nearby";
 import galleryImagesData from "@/gallery-data.json";
 
 const MAPS_URL = "https://maps.app.goo.gl/rSbVEjRWfoWmCdiS9";
@@ -738,19 +738,16 @@ function NearbyPlaces() {
   if (locale !== "en" && locale !== "es") return null;
 
   const spanish = locale === "es";
-  const places = [
-    { slug: "laguna-69", name: "Laguna 69", description: spanish ? "Caminata desde Cebollapampa hasta una laguna glaciar." : "A hike from Cebollapampa to a glacial lake." },
-    { slug: "chinancocha", name: "Laguna Chinancocha", description: spanish ? "Paseo junto a la primera laguna de Llanganuco desde Yungay." : "A lakeside visit to the first Llanganuco lake from Yungay." },
-  ];
+  const places = Object.entries(nearby);
   return (
     <section id="nearby" className="section">
       <h2 className="section-title">{spanish ? "Lugares cercanos para visitar" : "Nearby places to explore"}</h2>
       <div className="section-divider" />
       <div className="info-grid">
-        {places.map(({ slug, name, description }) => (
+        {places.map(([slug, place]) => (
           <div key={slug} className="info-card">
-            <h3 className="info-card-content"><Link href={nearbyPath(slug, locale)}>{name}</Link></h3>
-            <p className="info-card-note">{description}</p>
+            <h3 className="info-card-content"><Link href={nearbyPath(slug, locale)}>{place.name}</Link></h3>
+            <p className="info-card-note">{place[locale].intro}</p>
           </div>
         ))}
       </div>
