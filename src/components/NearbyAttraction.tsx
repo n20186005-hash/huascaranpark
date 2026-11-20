@@ -1,3 +1,4 @@
+import { VisitBasics, VisitSummary, VisitHoursAndFees, VisitPracticalAdvice, VisitStay, VisitDirections } from "@/components/AttractionVisitInfo";
 import { nearbyDetails } from "@/i18n/nearby-details";
 import type { Metadata } from "next";
 import HtmlLangSync from "@/components/HtmlLangSync";
@@ -23,6 +24,10 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
   const place = nearby[slug];
   const copy = place[locale];
   const es = locale === "es";
+  const visitorSite = {
+    slug, name: place.name, locality: `${place.locality}, Áncash, ${es ? "Perú" : "Peru"}`,
+    isPark: true, kind: "lake", source: parkInfo, map: place.mapUrl,
+  };
   const details = nearbyDetails[slug][locale];
   const other = slug === "chinancocha" ? "laguna-69" : "chinancocha";
   return (
@@ -36,6 +41,7 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
       <h1 className="section-title">{place.name}</h1>
       {place.review && <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {place.elevation}</p>}
       <p className="about-text">{copy.intro}</p>
+      <VisitSummary site={visitorSite} locale={locale} />
       <p><a href={place.mapUrl}>{es ? "Ver la laguna en Google Maps" : "View the lake on Google Maps"}</a></p>
       <figure style={{ margin: "1.5rem 0" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -50,15 +56,11 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
       </section>
       <section className="info-card">
         <h2>{es ? "Información básica" : "Basic information"}</h2>
-        <dl>
-          <dt>{es ? "Ubicación" : "Location"}</dt><dd>{place.locality}, Áncash, {es ? "Perú" : "Peru"}</dd>
-          <dt>{es ? "Tipo de lugar" : "Site type"}</dt><dd>{es ? "Laguna glaciar" : "Glacial lake"}</dd>
-          {place.elevation && <><dt>{es ? "Altitud" : "Elevation"}</dt><dd>{place.elevation}</dd></>}
-          <dt>{es ? "Entradas y acceso" : "Admission and access"}</dt><dd>{copy.access}</dd>
-        </dl>
+        <VisitBasics site={visitorSite} locale={locale} typeLabel={es ? "Laguna glaciar" : "Glacial lake"} access={copy.access} elevation={place.elevation} />
         <p>{es ? "Consulta los horarios y las tarifas vigentes para el sector antes de partir." : "Check the current hours and applicable rates for this sector before leaving."}</p>
         <p><a href={es ? "/es/entradas-precios" : "/entrance-fees"}>{es ? "Tarifas y horarios del parque" : "Park fees and opening hours"}</a></p>
       </section>
+      <VisitHoursAndFees site={visitorSite} locale={locale} />
       <section className="info-card">
         <h2>{es ? "Cómo llegar" : "Getting there"}</h2>
         <p>{copy.transport}</p>
@@ -66,6 +68,7 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
         <h3>{es ? "Ruta de visita" : "Visit itinerary"}</h3>
         <ol>{copy.steps.map((step) => <li key={step}>{step}</li>)}</ol>
       </section>
+      <VisitPracticalAdvice site={visitorSite} locale={locale} />
       <section className="info-card">
         <h2>{es ? "Consejos y qué observar" : "Visit tips and what to look for"}</h2>
         <p>{details.advice}</p>
@@ -82,7 +85,8 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
           </details>
         ))}
       </section>
-      <section className="info-card">
+      <VisitStay site={visitorSite} locale={locale} />
+      <section id="visitor-reviews" className="info-card">
         <h2>{es ? "Opiniones de visitantes" : "Visitor reviews"}</h2>
         {place.review && <p>{place.review.score}/5 · {place.review.count} {es ? "opiniones" : "reviews"} · {es ? "Google, según Wanderlog, consultado el 20 de noviembre de 2026" : "Google via Wanderlog, checked November 20, 2026"}</p>}
         <p><a href={place.review?.source ?? place.mapUrl}>{es ? "Ver puntuación y opiniones" : "View rating and reviews"}</a></p>
@@ -97,6 +101,11 @@ export default function NearbyAttraction({ slug, locale }: { slug: NearbySlug; l
           {slug === "chinancocha" && <li><a href={nearbyPath("orconcocha", locale)}>{nearby.orconcocha.name}</a></li>}
         </ul>
       </section>
+      <section className="info-card">
+        <h2>{es ? "Más lugares cercanos" : "More nearby attractions"}</h2>
+        <a href={es ? "/es#nearby" : "/#nearby"}>{es ? "Ver todas las guías de Áncash" : "Browse the Áncash attraction guides"}</a>
+      </section>
+      <VisitDirections site={visitorSite} locale={locale} accessMap={mapLink(place.accessQuery)} />
     </main>
   );
 }

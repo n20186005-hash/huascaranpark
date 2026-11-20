@@ -1,3 +1,4 @@
+import { VisitBasics, VisitSummary, VisitHoursAndFees, VisitPracticalAdvice, VisitStay, VisitDirections } from "@/components/AttractionVisitInfo";
 import type { Metadata } from "next";
 import HtmlLangSync from "@/components/HtmlLangSync";
 import { nearbyPath, parkInfo } from "@/i18n/nearby";
@@ -99,6 +100,10 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
   const copy = place[locale];
   const es = locale === "es";
   const map = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`;
+  const visitorSite = {
+    slug, name: place.name, locality: `${place.locality}, Áncash, ${es ? "Perú" : "Peru"}`,
+    isPark: place.authority === "park", kind: place.kind, source: place.source, map,
+  };
   const steps = copy.transport.split(/(?<=\.)\s+(?=[A-ZÁÉÍÓÚÜÑ])/u);
   const nearby = Object.entries(regionalAttractions)
     .filter(([key, candidate]) => key !== slug && candidate.locality.split(",")[0] === place.locality.split(",")[0])
@@ -114,6 +119,7 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
       </div>
       <h1 className="section-title">{place.name}</h1>
       <p className="about-text">{copy.intro}</p>
+      <VisitSummary site={visitorSite} locale={locale} />
       <a href={map}>{es ? "Ver ubicación en Google Maps" : "View location on Google Maps"}</a>
       <figure style={{ margin: "1.5rem 0" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -127,24 +133,28 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
       <section className="info-card">
         <h2>{es ? `Sobre ${place.name}` : `About ${place.name}`}</h2>
         <p>{management?.[locale] ?? manager(place, es)}</p>
-        <p>{copy.background}</p>
         <a href={management?.source ?? authoritySource}>{es ? "Consultar la entidad de referencia" : "Check the management or visitor source"}</a>
       </section>
       <section className="info-card">
         <h2>{es ? "Información básica" : "Basic information"}</h2>
-        <dl>
-          <dt>{es ? "Ubicación" : "Location"}</dt><dd>{place.locality}, Áncash, {es ? "Perú" : "Peru"}</dd>
-          <dt>{es ? "Tipo de lugar" : "Site type"}</dt><dd>{typeLabels[place.kind][es ? 1 : 0]}</dd>
-          <dt>{es ? "Horario y entrada" : "Hours and admission"}</dt><dd>{accessNote(place, es)}</dd>
-        </dl>
+        <VisitBasics site={visitorSite} locale={locale} typeLabel={typeLabels[place.kind][es ? 1 : 0]} access={accessNote(place, es)} />
         {place.authority === "park" && <a href={es ? "/es/entradas-precios" : "/entrance-fees"}>{es ? "Tarifas del parque" : "Park entrance fees"}</a>}
       </section>
+      <VisitHoursAndFees site={visitorSite} locale={locale} />
       <section className="info-card">
         <h2>{es ? "Cómo llegar y recorrer el lugar" : "Getting there and planning the visit"}</h2>
-        <h3>{es ? "Recorrido recomendado" : "Suggested route"}</h3>
+        <a href={map}>{es ? "Consultar la ubicación y la ruta de llegada" : "Check the location and approach on Google Maps"}</a>
+      </section>
+      <section className="info-card">
+        <h2>{es ? "Qué observar" : "What to look for"}</h2>
+        <p>{copy.background}</p>
+      </section>
+      <section className="info-card">
+        <h2>{es ? "Recorrido recomendado" : "Suggested route"}</h2>
         <ol>{steps.map((step) => <li key={step}>{step}</li>)}</ol>
         <a href={map}>{es ? "Abrir el mapa del lugar" : "Open the location map"}</a>
       </section>
+      <VisitPracticalAdvice site={visitorSite} locale={locale} />
       <section className="info-card">
         <h2>{es ? "Dónde tomar fotos" : "Where to take photos"}</h2>
         <p>{copy.photography}</p>
@@ -153,7 +163,8 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
         <h2>{es ? "Preguntas frecuentes" : "Frequently asked questions"}</h2>
         <details><summary>{copy.faq[0]}</summary><p>{copy.faq[1]}</p></details>
       </section>
-      <section className="info-card">
+      <VisitStay site={visitorSite} locale={locale} />
+      <section id="visitor-reviews" className="info-card">
         <h2>{es ? "Opiniones y fuentes" : "Reviews and sources"}</h2>
         <ul>
           <li><a href={map}>{es ? "Consultar opiniones en Google Maps" : "Check reviews on Google Maps"}</a></li>
@@ -161,6 +172,11 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
           {nearby.map(([key, candidate]) => <li key={key}><a href={nearbyPath(key, locale)}>{candidate.name}</a></li>)}
         </ul>
       </section>
+      <section className="info-card">
+        <h2>{es ? "Más lugares cercanos" : "More nearby attractions"}</h2>
+        <a href={es ? "/es#nearby" : "/#nearby"}>{es ? "Ver todas las guías de Áncash" : "Browse the Áncash attraction guides"}</a>
+      </section>
+      <VisitDirections site={visitorSite} locale={locale} />
     </main>
   );
 }
