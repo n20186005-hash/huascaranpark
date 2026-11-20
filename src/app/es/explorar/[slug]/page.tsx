@@ -4,8 +4,6 @@ import { notFound } from "next/navigation";
 import NearbyAttraction, { nearbyMetadata } from "@/components/NearbyAttraction";
 import { nearby, type NearbySlug } from "@/i18n/nearby";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return [...Object.keys(nearby), ...Object.keys(regionalAttractions)].map((slug) => ({ slug }));
 }

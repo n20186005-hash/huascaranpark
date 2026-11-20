@@ -21,6 +21,29 @@ const typeLabels: Record<Attraction["kind"], [string, string]> = {
   tunnel: ["Road tunnel", "Túnel vial"],
 };
 
+const managementBySite: Partial<Record<RegionalSlug, { en: string; es: string; source: string }>> = {
+  "campo-santo-yungay": {
+    en: "The Provincial Municipality of Yungay owns the memorial grounds and sets their operating and visitor rules.",
+    es: "La Municipalidad Provincial de Yungay es propietaria del Campo Santo y regula su funcionamiento y las visitas.",
+    source: "https://www.gob.pe/institucion/muniyungay/normas-legales/6417819-0002-2025-mpy",
+  },
+  "plaza-huaraz": {
+    en: "The Provincial Municipality of Huaraz is responsible for maintaining the main square.",
+    es: "La Municipalidad Provincial de Huaraz tiene a su cargo el mantenimiento de la plaza principal.",
+    source: "https://www.gob.pe/munihuaraz",
+  },
+  "chavin-de-huantar": {
+    en: "The Áncash regional directorate of Peru’s Ministry of Culture manages the archaeological monument.",
+    es: "La Dirección Desconcentrada de Cultura de Áncash, del Ministerio de Cultura, gestiona el monumento arqueológico.",
+    source: "https://transparencia.cultura.gob.pe/sites/default/files/transparencia/2020/11/resoluciones-ministeriales/rm292-2020-dm-mc-anexo.pdf",
+  },
+  "museo-chavin": {
+    en: "The National Chavín Museum is managed by Peru’s Ministry of Culture through its Áncash regional culture directorate.",
+    es: "El Museo Nacional Chavín es administrado por el Ministerio de Cultura a través de la Dirección Desconcentrada de Cultura de Áncash.",
+    source: "https://transparencia.cultura.gob.pe/sites/default/files/transparencia/2021/07/resoluciones-secretaria-general/resoluciondesecretariageneral134-2021-sg-anexo.pdf",
+  },
+};
+
 function manager(place: Attraction, es: boolean) {
   switch (place.authority) {
     case "park": return es
@@ -80,6 +103,7 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
   const nearby = Object.entries(regionalAttractions)
     .filter(([key, candidate]) => key !== slug && candidate.locality.split(",")[0] === place.locality.split(",")[0])
     .slice(0, 3);
+  const management = managementBySite[slug];
   const authoritySource = place.authority === "park" ? parkInfo : place.authority === "culture" ? "https://www.gob.pe/cultura" : place.source;
   return (
     <main className="section" lang={locale}>
@@ -102,9 +126,9 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
       </figure>
       <section className="info-card">
         <h2>{es ? `Sobre ${place.name}` : `About ${place.name}`}</h2>
-        <p>{manager(place, es)}</p>
+        <p>{management?.[locale] ?? manager(place, es)}</p>
         <p>{copy.background}</p>
-        <a href={authoritySource}>{es ? "Consultar la entidad de referencia" : "Check the management or visitor source"}</a>
+        <a href={management?.source ?? authoritySource}>{es ? "Consultar la entidad de referencia" : "Check the management or visitor source"}</a>
       </section>
       <section className="info-card">
         <h2>{es ? "Información básica" : "Basic information"}</h2>
@@ -117,6 +141,7 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
       </section>
       <section className="info-card">
         <h2>{es ? "Cómo llegar y recorrer el lugar" : "Getting there and planning the visit"}</h2>
+        <h3>{es ? "Recorrido recomendado" : "Suggested route"}</h3>
         <ol>{steps.map((step) => <li key={step}>{step}</li>)}</ol>
         <a href={map}>{es ? "Abrir el mapa del lugar" : "Open the location map"}</a>
       </section>
