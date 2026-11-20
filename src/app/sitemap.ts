@@ -1,3 +1,4 @@
+import { regionalAttractions } from "@/i18n/regional-attractions";
 import { nearby, nearbyPath } from "@/i18n/nearby";
 import type { MetadataRoute } from "next";
 
@@ -29,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}${path}`,
       alternates: { languages: absoluteAlternates({ ...GUIDE_ROUTES, "x-default": GUIDE_ROUTES.en }) },
     })),
-    ...Object.keys(nearby).flatMap((slug) => {
+    ...[...Object.keys(nearby), ...Object.keys(regionalAttractions)].flatMap((slug) => {
       const en = nearbyPath(slug, "en");
       const es = nearbyPath(slug, "es");
       const alternates = { languages: absoluteAlternates({ en, es, "x-default": en }) };
