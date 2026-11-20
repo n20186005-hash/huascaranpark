@@ -80,8 +80,15 @@ export const nearby: Record<NearbySlug, NearbyPlace> = {
   "laguna-69": { ...originalLakes["laguna-69"], locality: "Yungay", width: 1200, height: 800 },
   chinancocha: { ...originalLakes.chinancocha, locality: "Yungay", width: 1200, height: 900 },
 };
-export function nearbyPath(slug: string, locale: "en" | "es") {
-  return locale === "es" ? `/es/explorar/${slug}` : `/explore/${slug}`;
+export const attractionLocales = ["en", "es", "zh", "qu"] as const;
+
+export function nearbyPath(slug: string, locale: (typeof attractionLocales)[number]) {
+  if (locale === "es") return `/es/explorar/${slug}`;
+  return locale === "en" ? `/explore/${slug}` : `/${locale}/explore/${slug}`;
+}
+
+export function nearbyAlternates(slug: string) {
+  return { ...Object.fromEntries(attractionLocales.map((locale) => [locale, nearbyPath(slug, locale)])), "x-default": nearbyPath(slug, "en") };
 }
 export const parkInfo = "https://visitaareasnaturales.sernanp.gob.pe/anps/parque-nacional-huascaran/";
 export const parkMap = "https://maps.app.goo.gl/rSbVEjRWfoWmCdiS9";

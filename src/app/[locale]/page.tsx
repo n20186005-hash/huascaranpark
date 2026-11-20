@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { interfaceCopy, homePath, nearbyCopy } from "@/i18n/interface";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { regionalAttractions } from "@/i18n/regional-attractions";
+import { localizedAttractions } from "@/i18n/attractions-zh-qu";
 import { nearby, nearbyPath } from "@/i18n/nearby";
 import { googleReviews } from "@/i18n/reviews";
 import galleryImagesData from "@/gallery-data.json";
@@ -735,20 +736,22 @@ function Glance() {
 function NearbyPlaces() {
   const { locale } = useLang();
   const copy = nearbyCopy[locale];
-  const guideLocale = locale === "es" || locale === "qu" ? "es" : "en";
+
   const places = [...Object.entries(nearby), ...Object.entries(regionalAttractions)];
   return (
     <section id="nearby" className="section" style={{ scrollMarginTop: "5rem" }}>
       <h2 className="section-title">{copy.heading}</h2>
       <div className="section-divider" />
-      {copy.guideLanguage && <p className="about-text">{copy.guideLanguage}</p>}
       <div className="info-grid">
-        {places.map(([slug, place]) => (
-          <div key={slug} className="info-card">
-            <h3 className="info-card-content"><Link href={nearbyPath(slug, guideLocale)} hrefLang={guideLocale}>{place.name}</Link></h3>
-            {locale === guideLocale && <p className="info-card-note">{place[guideLocale].intro}</p>}
-          </div>
-        ))}
+        {places.map(([slug, place]) => {
+          const localized = locale === "zh" || locale === "qu" ? localizedAttractions[slug as keyof typeof localizedAttractions][locale] : { name: place.name, intro: place[locale].intro };
+          return (
+            <div key={slug} className="info-card">
+              <h3 className="info-card-content"><Link href={nearbyPath(slug, locale)} hrefLang={locale}>{localized.name}</Link></h3>
+              <p className="info-card-note">{localized.intro}</p>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

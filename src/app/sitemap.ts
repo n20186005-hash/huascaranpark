@@ -1,6 +1,6 @@
 import { legalLocales, legalPath, legalSlugs } from "@/i18n/legal-metadata";
 import { regionalAttractions } from "@/i18n/regional-attractions";
-import { nearby, nearbyPath } from "@/i18n/nearby";
+import { attractionLocales, nearby, nearbyAlternates, nearbyPath } from "@/i18n/nearby";
 import type { MetadataRoute } from "next";
 
 const SITE_URL = `https://${process.env.CURRENT_SITE_DOMAIN || "www.huascaranpark.com"}`;
@@ -32,10 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages: absoluteAlternates({ ...GUIDE_ROUTES, "x-default": GUIDE_ROUTES.en }) },
     })),
     ...[...Object.keys(nearby), ...Object.keys(regionalAttractions)].flatMap((slug) => {
-      const en = nearbyPath(slug, "en");
-      const es = nearbyPath(slug, "es");
-      const alternates = { languages: absoluteAlternates({ en, es, "x-default": en }) };
-      return [en, es].map((path) => ({ url: `${SITE_URL}${path}`, alternates }));
+      const alternates = { languages: absoluteAlternates(nearbyAlternates(slug)) };
+      return attractionLocales.map((locale) => ({ url: `${SITE_URL}${nearbyPath(slug, locale)}`, alternates }));
     }),
     ...legalSlugs.flatMap((slug) => {
       const paths = Object.fromEntries(legalLocales.map((locale) => [locale, legalPath(locale, slug)]));

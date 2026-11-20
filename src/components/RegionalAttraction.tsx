@@ -1,7 +1,7 @@
 import { VisitBasics, VisitSummary, VisitHoursAndFees, VisitPracticalAdvice, VisitStay, VisitDirections } from "@/components/AttractionVisitInfo";
 import type { Metadata } from "next";
 import HtmlLangSync from "@/components/HtmlLangSync";
-import { nearbyPath, parkInfo } from "@/i18n/nearby";
+import { nearbyAlternates, nearbyPath, parkInfo } from "@/i18n/nearby";
 import { regionalAttractions, type RegionalAttraction as Attraction } from "@/i18n/regional-attractions";
 
 type Locale = "en" | "es";
@@ -90,7 +90,7 @@ export function regionalMetadata(slug: RegionalSlug, locale: Locale): Metadata {
     description: place[locale].intro,
     alternates: {
       canonical: nearbyPath(slug, locale),
-      languages: { en: nearbyPath(slug, "en"), es: nearbyPath(slug, "es"), "x-default": nearbyPath(slug, "en") },
+      languages: nearbyAlternates(slug),
     },
   };
 }
@@ -116,6 +116,8 @@ export default function RegionalAttraction({ slug, locale }: { slug: RegionalSlu
       <div className="quick-nav">
         <a className="quick-nav-item" href={es ? "/es#nearby" : "/#nearby"}>{es ? "Lugares cercanos" : "Nearby places"}</a>
         <a className="quick-nav-item" href={nearbyPath(slug, es ? "en" : "es")} hrefLang={es ? "en" : "es"}>{es ? "English" : "Español"}</a>
+        <a className="quick-nav-item" href={nearbyPath(slug, "zh")} hrefLang="zh" lang="zh">中文</a>
+        <a className="quick-nav-item" href={nearbyPath(slug, "qu")} hrefLang="qu" lang="qu">Runasimi</a>
       </div>
       <header className="attraction-hero">
         <div className="attraction-hero-copy">
