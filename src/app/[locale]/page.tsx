@@ -292,10 +292,15 @@ function Culture() {
 }
 
 function Visiting() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
+  const tickets = locale === "es"
+    ? { href: "/es/entradas-precios", label: "Ver tarifas y cómo comprar la entrada" }
+    : locale === "en"
+      ? { href: "/entrance-fees", label: "See entrance fees and how to book" }
+      : undefined;
   const cards = [
     { title: t.visiting.hours.title, content: t.visiting.hours.content, note: t.visiting.hours.note },
-    { title: t.visiting.price.title, content: t.visiting.price.content, note: t.visiting.price.note },
+    { title: t.visiting.price.title, content: t.visiting.price.content, note: t.visiting.price.note, link: tickets },
     { title: t.visiting.duration.title, content: t.visiting.duration.content, note: t.visiting.duration.note },
   ];
 
@@ -314,6 +319,11 @@ function Visiting() {
                 <div className="info-card-title">{c.title}</div>
                 <div className="info-card-content">{c.content}</div>
                 <div className="info-card-note">{c.note}</div>
+                {c.link && (
+                  <p className="info-card-note" style={{ marginTop: "0.75rem" }}>
+                    <Link href={c.link.href} style={{ textDecoration: "underline" }}>{c.link.label}</Link>
+                  </p>
+                )}
               </div>
             ))}
           </div>

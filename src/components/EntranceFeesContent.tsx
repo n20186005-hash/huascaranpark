@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { entranceFaqEn, entranceFaqEs } from "@/i18n/entrance-faq";
 
+const PARK_INFO_URL = "https://visitaareasnaturales.sernanp.gob.pe/anps/parque-nacional-huascaran/";
+
 type Fee = { title: string; price: string; note: string };
 type Content = {
   eyebrow: string;
   title: string;
   verified: string;
   intro: string;
+  quickAnswer: string;
+  officialFees: string;
   hoursTitle: string;
   hours: string;
   feesTitle: string;
@@ -30,6 +34,8 @@ const CONTENT: Record<"en" | "es", Content> = {
     verified: "Last verified: November 2026 · Source: SERNANP (visitAANP)",
     intro:
       "Huascarán National Park is a protected area managed by SERNANP (Peru's National Service of Natural Protected Areas). Entrance fees and visiting rules are set by SERNANP and can change. The details below reflect the official visitor page and were last checked in November 2026.",
+    quickAnswer: "A standard one-day ticket costs S/30 at the general rate, S/12 for Peruvian adults and S/5 for eligible local adults with DNI. Laguna 69 and Pico Mateo have separate rates for Peruvian and local visitors. Check the official table for children’s rates and confirm booking with your authorized operator.",
+    officialFees: "Check the full SERNANP tariff table",
     hoursTitle: "Opening Hours",
     hours:
       "Official visiting hours: 08:30 – 15:00, Monday to Friday. Some sectors and trekking entrances may open earlier; hours vary by sector and season.",
@@ -68,6 +74,8 @@ const CONTENT: Record<"en" | "es", Content> = {
     verified: "Última verificación: noviembre de 2026 · Fuente: SERNANP (visitAANP)",
     intro:
       "El Parque Nacional Huascarán es un área protegida administrada por SERNANP (Servicio Nacional de Áreas Naturales Protegidas). Las tarifas y normas de visita las fija SERNANP y pueden cambiar. Los detalles abajo reflejan la página oficial de visitantes y fueron verificados en noviembre de 2026.",
+    quickAnswer: "La entrada general de un día cuesta S/30. La tarifa es de S/12 para adultos peruanos y de S/5 para adultos residentes acreditados con DNI. La Laguna 69 y el Pico Mateo tienen tarifas diferenciadas para nacionales y residentes. Consulta la tabla oficial para las tarifas de menores y confirma la reserva con tu operador autorizado.",
+    officialFees: "Consultar la tabla completa de tarifas del SERNANP",
     hoursTitle: "Horario de Apertura",
     hours:
       "Horario oficial de visita: 08:30 – 15:00, de lunes a viernes. Algunos sectores y entradas de trekking abren antes; varía por sector y temporada.",
@@ -143,12 +151,16 @@ export default function EntranceFeesContent({ locale }: { locale: "en" | "es" })
             {c.title}
           </h1>
           <p style={{ marginTop: "1.25rem", color: "rgba(255,255,255,0.6)", fontSize: "0.85rem" }}>
-            <a href="https://visitaareasnaturales.sernanp.gob.pe/anps/parque-nacional-huascaran/" style={{ color: "inherit", textDecoration: "underline" }}>{c.verified}</a>
+            <a href={PARK_INFO_URL} style={{ color: "inherit", textDecoration: "underline" }}>{c.verified}</a>
           </p>
         </div>
       </header>
 
       <main className="section">
+        <p className="about-text">{c.quickAnswer}</p>
+        <p className="about-text">
+          <a href={PARK_INFO_URL} style={{ textDecoration: "underline" }}>{c.officialFees}</a>
+        </p>
         <p className="about-text" style={{ whiteSpace: "pre-line" }}>{c.intro}</p>
 
         <div className="info-grid" style={{ marginTop: "2.5rem" }}>

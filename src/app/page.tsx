@@ -6,14 +6,17 @@ import HtmlLangSync from "@/components/HtmlLangSync";
 
 const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "www.huascaranpark.com"}`;
 
+const title = "Huascarán National Park, Peru: Fees & Routes from Huaraz";
+const description =
+  "Plan a visit to Huascarán National Park in Áncash, Peru. Check entrance fees and hours, then compare Llanganuco, Laguna 69 and the Santa Cruz trek from Huaraz.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Huascarán National Park, Peru – Entrance Fees & Travel Guide",
+    default: title,
     template: "%s | Huascarán National Park",
   },
-  description:
-    "Plan your visit to Huascarán National Park in Peru. Check entrance fees, opening hours, Laguna 69, the Santa Cruz Trek, maps and travel tips from Huaraz.",
+  description,
   keywords: [
     "Huascarán National Park",
     "Parque Nacional Huascarán",
@@ -35,9 +38,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: `${baseUrl}/`,
-    title: "Huascarán National Park, Peru – Entrance Fees & Travel Guide",
-    description:
-      "Plan your visit to Huascarán National Park in Peru. Entrance fees, opening hours, Laguna 69, Santa Cruz Trek, maps and travel tips from Huaraz.",
+    title,
+    description,
     siteName: "Huascarán National Park Travel Guide",
     images: [
       {
@@ -50,9 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Huascarán National Park, Peru – Entrance Fees & Travel Guide",
-    description:
-      "Plan your visit to Huascarán National Park in Peru. Entrance fees, opening hours, Laguna 69, Santa Cruz Trek and travel tips from Huaraz.",
+    title,
+    description,
     images: ["/gallery/huascaran-national-park (1).jpg"],
   },
   robots: {

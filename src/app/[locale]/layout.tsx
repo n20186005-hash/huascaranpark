@@ -20,13 +20,13 @@ const dmSans = DM_Sans({
 const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "www.huascaranpark.com"}`;
 
 const TITLES: Record<string, string> = {
-  es: "Parque Nacional Huascarán: Entradas, Rutas y Guía 2026",
+  es: "Parque Nacional Huascarán: entradas y rutas desde Huaraz",
   zh: "瓦斯卡兰国家公园：门票、路线与旅行指南 2026",
   qu: "Huascarán Nasyunal Pak: Puriy Guía 2026",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Planifica tu visita al Parque Nacional Huascarán en Perú. Entradas, horarios, Laguna 69, Santa Cruz Trek, mapas y consejos desde Huaraz.",
+  es: "Consulta las entradas y horarios del Parque Nacional Huascarán, en Áncash. Compara las rutas desde Huaraz a Llanganuco, la Laguna 69 y Santa Cruz.",
   zh: "规划你的秘鲁瓦斯卡兰国家公园之旅。门票、开放时间、Laguna 69、Santa Cruz 徒步、地图与来自 Huaraz 的实用建议。",
   qu: "Huascarán Nasyunal Pak Perú puriy. Qullqi, punchaw, Laguna 69, Santa Cruz, mapa, yachay.",
 };
